@@ -69,7 +69,7 @@ async def run():
 
         print("Navigating to creator data...")
         # await run_creator_scraper(page, page_num)
-        await creator_main(page)
+        # await creator_main(page)
 
         # Scrape Product Data
         print("Navigating to product data...")
@@ -86,7 +86,7 @@ async def run():
 
         # Scrape Live Data
         print("Navigating to live data...")
-        # await live_main(page)
+        await live_main(page)
 
         await browser.close()
         await asyncio.sleep(3)

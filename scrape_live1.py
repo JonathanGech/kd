@@ -137,7 +137,7 @@ async def extract_live_data(page, page_num):
                 try:
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
-                        image_name = f"live_{rank_counter}_image_{image_counter}.png"
+                        image_name = f"live_product_{rank_counter}_image_{image_counter}.png"
                         image_path = os.path.join(output_dir, image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
@@ -199,7 +199,7 @@ async def extract_live_data(page, page_num):
             product_idx += num_images
                     
         # Assign Best Seller Prices based on Best Sellers
-        all_product_prices = []
+        # all_product_prices = []
         price_idx = 0
         for live in all_lives:
             num_products = len(live["Best Sellers"])

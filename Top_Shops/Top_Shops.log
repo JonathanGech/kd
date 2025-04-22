@@ -1,0 +1,474 @@
+2025-04-22 23:22:51,718 - INFO - Starting scraper...
+2025-04-22 23:22:51,719 - INFO - Clicking 'Livestream' link inside #page_header_left...
+2025-04-22 23:22:58,660 - INFO - Scraping page 1...
+2025-04-22 23:22:58,690 - INFO - Loaded 10 livestreams
+2025-04-22 23:22:59,064 - INFO - Downloaded coverpic for live live_1_image_content_1.png
+2025-04-22 23:22:59,772 - INFO - Saved live_product_1_image_1.png with product ID 1729542997783449608
+2025-04-22 23:23:00,234 - INFO - Saved live_product_1_image_2.png with product ID 1730548745653948424
+2025-04-22 23:23:00,795 - INFO - Saved live_product_1_image_3.png with product ID 1729938571950985224
+2025-04-22 23:23:01,248 - INFO - 
+Live 1:
+2025-04-22 23:23:01,583 - INFO - Downloaded coverpic for live live_2_image_content_2.png
+2025-04-22 23:23:02,352 - INFO - Saved live_product_2_image_4.png with product ID 1730586236661895235
+2025-04-22 23:23:02,928 - INFO - Saved live_product_2_image_5.png with product ID 1730362285233246275
+2025-04-22 23:23:03,546 - INFO - Saved live_product_2_image_6.png with product ID 1729989006154829891
+2025-04-22 23:23:03,988 - INFO - 
+Live 1:
+2025-04-22 23:23:03,989 - INFO - 
+Live 2:
+2025-04-22 23:23:04,301 - INFO - Downloaded coverpic for live live_3_image_content_3.png
+2025-04-22 23:23:04,947 - INFO - Saved live_product_3_image_7.png with product ID 1729534696881558144
+2025-04-22 23:23:05,655 - INFO - Saved live_product_3_image_8.png with product ID 1729579556672148096
+2025-04-22 23:23:06,185 - INFO - Saved live_product_3_image_9.png with product ID 1729596073113195136
+2025-04-22 23:23:06,771 - INFO - 
+Live 1:
+2025-04-22 23:23:06,773 - INFO - 
+Live 2:
+2025-04-22 23:23:06,774 - INFO - 
+Live 3:
+2025-04-22 23:23:07,046 - INFO - Downloaded coverpic for live live_4_image_content_4.png
+2025-04-22 23:23:07,694 - INFO - Saved live_product_4_image_10.png with product ID 1730918019362230280
+2025-04-22 23:23:07,986 - INFO - Saved live_product_4_image_11.png with product ID 1729542997783449608
+2025-04-22 23:23:08,290 - INFO - Saved live_product_4_image_12.png with product ID 1730548745653948424
+2025-04-22 23:23:08,931 - INFO - 
+Live 1:
+2025-04-22 23:23:08,933 - INFO - 
+Live 2:
+2025-04-22 23:23:08,934 - INFO - 
+Live 3:
+2025-04-22 23:23:08,935 - INFO - 
+Live 4:
+2025-04-22 23:23:09,166 - INFO - Downloaded coverpic for live live_5_image_content_5.png
+2025-04-22 23:23:09,759 - INFO - Saved live_product_5_image_13.png with product ID 1729562221692948644
+2025-04-22 23:23:10,347 - INFO - Saved live_product_5_image_14.png with product ID 1729537884756152484
+2025-04-22 23:23:10,881 - INFO - Saved live_product_5_image_15.png with product ID 1729597707943579812
+2025-04-22 23:23:11,445 - INFO - 
+Live 1:
+2025-04-22 23:23:11,447 - INFO - 
+Live 2:
+2025-04-22 23:23:11,448 - INFO - 
+Live 3:
+2025-04-22 23:23:11,449 - INFO - 
+Live 4:
+2025-04-22 23:23:11,451 - INFO - 
+Live 5:
+2025-04-22 23:23:11,721 - INFO - Downloaded coverpic for live live_6_image_content_6.png
+2025-04-22 23:23:12,272 - INFO - Saved live_product_6_image_16.png with product ID 1729542997783449608
+2025-04-22 23:23:12,647 - INFO - Saved live_product_6_image_17.png with product ID 1730548745653948424
+2025-04-22 23:23:13,312 - INFO - Saved live_product_6_image_18.png with product ID 1729736994697482248
+2025-04-22 23:23:13,931 - INFO - 
+Live 1:
+2025-04-22 23:23:13,933 - INFO - 
+Live 2:
+2025-04-22 23:23:13,935 - INFO - 
+Live 3:
+2025-04-22 23:23:13,940 - INFO - 
+Live 4:
+2025-04-22 23:23:13,943 - INFO - 
+Live 5:
+2025-04-22 23:23:13,949 - INFO - 
+Live 6:
+2025-04-22 23:23:14,233 - INFO - Downloaded coverpic for live live_7_image_content_7.png
+2025-04-22 23:23:14,885 - INFO - Saved live_product_7_image_19.png with product ID 1731060297312931895
+2025-04-22 23:23:15,387 - INFO - Saved live_product_7_image_20.png with product ID 1729649195107192943
+2025-04-22 23:23:16,084 - INFO - Saved live_product_7_image_21.png with product ID 1730937656723607805
+2025-04-22 23:23:16,884 - INFO - 
+Live 1:
+2025-04-22 23:23:16,885 - INFO - 
+Live 2:
+2025-04-22 23:23:16,887 - INFO - 
+Live 3:
+2025-04-22 23:23:16,888 - INFO - 
+Live 4:
+2025-04-22 23:23:16,891 - INFO - 
+Live 5:
+2025-04-22 23:23:16,893 - INFO - 
+Live 6:
+2025-04-22 23:23:16,899 - INFO - 
+Live 7:
+2025-04-22 23:23:17,103 - INFO - Downloaded coverpic for live live_8_image_content_8.png
+2025-04-22 23:23:17,863 - INFO - Saved live_product_8_image_22.png with product ID 1729654449419424166
+2025-04-22 23:23:18,493 - INFO - Saved live_product_8_image_23.png with product ID 1730415399686606857
+2025-04-22 23:23:19,128 - INFO - Saved live_product_8_image_24.png with product ID 1729562343719538908
+2025-04-22 23:23:19,741 - INFO - 
+Live 1:
+2025-04-22 23:23:19,743 - INFO - 
+Live 2:
+2025-04-22 23:23:19,744 - INFO - 
+Live 3:
+2025-04-22 23:23:19,746 - INFO - 
+Live 4:
+2025-04-22 23:23:19,747 - INFO - 
+Live 5:
+2025-04-22 23:23:19,749 - INFO - 
+Live 6:
+2025-04-22 23:23:19,751 - INFO - 
+Live 7:
+2025-04-22 23:23:19,753 - INFO - 
+Live 8:
+2025-04-22 23:23:19,942 - INFO - Downloaded coverpic for live live_9_image_content_9.png
+2025-04-22 23:23:20,661 - INFO - Saved live_product_9_image_25.png with product ID 1730548761579393857
+2025-04-22 23:23:21,247 - INFO - Saved live_product_9_image_26.png with product ID 1729570465770214209
+2025-04-22 23:23:21,629 - INFO - Saved live_product_9_image_27.png with product ID 1729940035404993345
+2025-04-22 23:23:22,469 - INFO - 
+Live 1:
+2025-04-22 23:23:22,471 - INFO - 
+Live 2:
+2025-04-22 23:23:22,472 - INFO - 
+Live 3:
+2025-04-22 23:23:22,474 - INFO - 
+Live 4:
+2025-04-22 23:23:22,475 - INFO - 
+Live 5:
+2025-04-22 23:23:22,477 - INFO - 
+Live 6:
+2025-04-22 23:23:22,478 - INFO - 
+Live 7:
+2025-04-22 23:23:22,480 - INFO - 
+Live 8:
+2025-04-22 23:23:22,482 - INFO - 
+Live 9:
+2025-04-22 23:23:22,780 - INFO - Downloaded coverpic for live live_10_image_content_10.png
+2025-04-22 23:23:23,371 - INFO - Saved live_product_10_image_28.png with product ID 1730617684471878595
+2025-04-22 23:23:23,817 - INFO - Saved live_product_10_image_29.png with product ID 1729607382866629571
+2025-04-22 23:23:24,318 - INFO - Saved live_product_10_image_30.png with product ID 1729759134475785155
+2025-04-22 23:23:25,222 - INFO - 
+Live 1:
+2025-04-22 23:23:25,224 - INFO - 
+Live 2:
+2025-04-22 23:23:25,226 - INFO - 
+Live 3:
+2025-04-22 23:23:25,227 - INFO - 
+Live 4:
+2025-04-22 23:23:25,229 - INFO - 
+Live 5:
+2025-04-22 23:23:25,230 - INFO - 
+Live 6:
+2025-04-22 23:23:25,231 - INFO - 
+Live 7:
+2025-04-22 23:23:25,233 - INFO - 
+Live 8:
+2025-04-22 23:23:25,235 - INFO - 
+Live 9:
+2025-04-22 23:23:25,236 - INFO - 
+Live 10:
+2025-04-22 23:23:25,258 - INFO - Scraping complete!
+2025-04-22 23:23:25,258 - INFO - Total lives scraped: 10
+2025-04-22 23:23:25,259 - INFO - Scraping complete!
+2025-04-22 23:23:25,259 - INFO - Total lives scraped: 10
+2025-04-22 23:27:46,194 - INFO - Starting scraper...
+2025-04-22 23:27:46,195 - INFO - Clicking 'Livestream' link inside #page_header_left...
+2025-04-22 23:27:53,650 - INFO - Scraping page 1...
+2025-04-22 23:27:53,677 - INFO - Loaded 10 livestreams
+2025-04-22 23:27:53,807 - INFO - Downloaded coverpic for live live_1_image_content_1.png
+2025-04-22 23:27:54,312 - INFO - Saved live_product_1_image_1.png with product ID 1729542997783449608
+2025-04-22 23:27:54,836 - INFO - Saved live_product_1_image_2.png with product ID 1730548745653948424
+2025-04-22 23:27:55,318 - INFO - Saved live_product_1_image_3.png with product ID 1729938571950985224
+2025-04-22 23:27:55,669 - INFO - 
+Live 1:
+2025-04-22 23:27:55,806 - INFO - Downloaded coverpic for live live_2_image_content_2.png
+2025-04-22 23:27:56,334 - INFO - Saved live_product_2_image_4.png with product ID 1730586236661895235
+2025-04-22 23:27:56,646 - INFO - Saved live_product_2_image_5.png with product ID 1730362285233246275
+2025-04-22 23:27:57,177 - INFO - Saved live_product_2_image_6.png with product ID 1729989006154829891
+2025-04-22 23:27:57,708 - INFO - 
+Live 1:
+2025-04-22 23:27:57,710 - INFO - 
+Live 2:
+2025-04-22 23:27:57,807 - INFO - Downloaded coverpic for live live_3_image_content_3.png
+2025-04-22 23:27:58,238 - INFO - Saved live_product_3_image_7.png with product ID 1729534696881558144
+2025-04-22 23:27:58,807 - INFO - Saved live_product_3_image_8.png with product ID 1729579556672148096
+2025-04-22 23:27:59,295 - INFO - Saved live_product_3_image_9.png with product ID 1729596073113195136
+2025-04-22 23:27:59,686 - INFO - 
+Live 1:
+2025-04-22 23:27:59,688 - INFO - 
+Live 2:
+2025-04-22 23:27:59,689 - INFO - 
+Live 3:
+2025-04-22 23:27:59,770 - INFO - Downloaded coverpic for live live_4_image_content_4.png
+2025-04-22 23:28:00,295 - INFO - Saved live_product_4_image_10.png with product ID 1730918019362230280
+2025-04-22 23:28:00,788 - INFO - Saved live_product_4_image_11.png with product ID 1729542997783449608
+2025-04-22 23:28:01,317 - INFO - Saved live_product_4_image_12.png with product ID 1730548745653948424
+2025-04-22 23:28:01,830 - INFO - 
+Live 1:
+2025-04-22 23:28:01,831 - INFO - 
+Live 2:
+2025-04-22 23:28:01,833 - INFO - 
+Live 3:
+2025-04-22 23:28:01,834 - INFO - 
+Live 4:
+2025-04-22 23:28:01,909 - INFO - Downloaded coverpic for live live_5_image_content_5.png
+2025-04-22 23:28:02,563 - INFO - Saved live_product_5_image_13.png with product ID 1729562221692948644
+2025-04-22 23:28:03,054 - INFO - Saved live_product_5_image_14.png with product ID 1729537884756152484
+2025-04-22 23:28:03,821 - INFO - Saved live_product_5_image_15.png with product ID 1729597707943579812
+2025-04-22 23:28:04,331 - INFO - 
+Live 1:
+2025-04-22 23:28:04,333 - INFO - 
+Live 2:
+2025-04-22 23:28:04,335 - INFO - 
+Live 3:
+2025-04-22 23:28:04,336 - INFO - 
+Live 4:
+2025-04-22 23:28:04,338 - INFO - 
+Live 5:
+2025-04-22 23:28:04,419 - INFO - Downloaded coverpic for live live_6_image_content_6.png
+2025-04-22 23:28:04,967 - INFO - Saved live_product_6_image_16.png with product ID 1729542997783449608
+2025-04-22 23:28:05,503 - INFO - Saved live_product_6_image_17.png with product ID 1730548745653948424
+2025-04-22 23:28:05,886 - INFO - Saved live_product_6_image_18.png with product ID 1729736994697482248
+2025-04-22 23:28:06,689 - INFO - 
+Live 1:
+2025-04-22 23:28:06,691 - INFO - 
+Live 2:
+2025-04-22 23:28:06,693 - INFO - 
+Live 3:
+2025-04-22 23:28:06,694 - INFO - 
+Live 4:
+2025-04-22 23:28:06,696 - INFO - 
+Live 5:
+2025-04-22 23:28:06,698 - INFO - 
+Live 6:
+2025-04-22 23:28:06,769 - INFO - Downloaded coverpic for live live_7_image_content_7.png
+2025-04-22 23:28:07,402 - INFO - Saved live_product_7_image_19.png with product ID 1731060297312931895
+2025-04-22 23:28:07,798 - INFO - Saved live_product_7_image_20.png with product ID 1729649195107192943
+2025-04-22 23:28:08,505 - INFO - Saved live_product_7_image_21.png with product ID 1730937656723607805
+2025-04-22 23:28:09,115 - INFO - 
+Live 1:
+2025-04-22 23:28:09,116 - INFO - 
+Live 2:
+2025-04-22 23:28:09,118 - INFO - 
+Live 3:
+2025-04-22 23:28:09,122 - INFO - 
+Live 4:
+2025-04-22 23:28:09,124 - INFO - 
+Live 5:
+2025-04-22 23:28:09,125 - INFO - 
+Live 6:
+2025-04-22 23:28:09,127 - INFO - 
+Live 7:
+2025-04-22 23:28:09,193 - INFO - Downloaded coverpic for live live_8_image_content_8.png
+2025-04-22 23:28:10,091 - INFO - Saved live_product_8_image_22.png with product ID 1729654449419424166
+2025-04-22 23:28:10,490 - INFO - Saved live_product_8_image_23.png with product ID 1730415399686606857
+2025-04-22 23:28:10,882 - INFO - Saved live_product_8_image_24.png with product ID 1729562343719538908
+2025-04-22 23:28:11,602 - INFO - 
+Live 1:
+2025-04-22 23:28:11,603 - INFO - 
+Live 2:
+2025-04-22 23:28:11,605 - INFO - 
+Live 3:
+2025-04-22 23:28:11,607 - INFO - 
+Live 4:
+2025-04-22 23:28:11,608 - INFO - 
+Live 5:
+2025-04-22 23:28:11,610 - INFO - 
+Live 6:
+2025-04-22 23:28:11,611 - INFO - 
+Live 7:
+2025-04-22 23:28:11,613 - INFO - 
+Live 8:
+2025-04-22 23:28:11,695 - INFO - Downloaded coverpic for live live_9_image_content_9.png
+2025-04-22 23:28:12,190 - INFO - Saved live_product_9_image_25.png with product ID 1730548761579393857
+2025-04-22 23:28:12,742 - INFO - Saved live_product_9_image_26.png with product ID 1729570465770214209
+2025-04-22 23:28:13,104 - INFO - Saved live_product_9_image_27.png with product ID 1729940035404993345
+2025-04-22 23:28:13,806 - INFO - 
+Live 1:
+2025-04-22 23:28:13,810 - INFO - 
+Live 2:
+2025-04-22 23:28:13,811 - INFO - 
+Live 3:
+2025-04-22 23:28:13,814 - INFO - 
+Live 4:
+2025-04-22 23:28:13,815 - INFO - 
+Live 5:
+2025-04-22 23:28:13,817 - INFO - 
+Live 6:
+2025-04-22 23:28:13,819 - INFO - 
+Live 7:
+2025-04-22 23:28:13,821 - INFO - 
+Live 8:
+2025-04-22 23:28:13,822 - INFO - 
+Live 9:
+2025-04-22 23:28:13,921 - INFO - Downloaded coverpic for live live_10_image_content_10.png
+2025-04-22 23:28:14,440 - INFO - Saved live_product_10_image_28.png with product ID 1730617684471878595
+2025-04-22 23:28:14,751 - INFO - Saved live_product_10_image_29.png with product ID 1729607382866629571
+2025-04-22 23:28:15,231 - INFO - Saved live_product_10_image_30.png with product ID 1729759134475785155
+2025-04-22 23:28:15,892 - INFO - 
+Live 1:
+2025-04-22 23:28:15,895 - INFO - 
+Live 2:
+2025-04-22 23:28:15,896 - INFO - 
+Live 3:
+2025-04-22 23:28:15,898 - INFO - 
+Live 4:
+2025-04-22 23:28:15,899 - INFO - 
+Live 5:
+2025-04-22 23:28:15,901 - INFO - 
+Live 6:
+2025-04-22 23:28:15,903 - INFO - 
+Live 7:
+2025-04-22 23:28:15,904 - INFO - 
+Live 8:
+2025-04-22 23:28:15,906 - INFO - 
+Live 9:
+2025-04-22 23:28:15,907 - INFO - 
+Live 10:
+2025-04-22 23:28:15,920 - INFO - Scraping complete!
+2025-04-22 23:28:15,921 - INFO - Total lives scraped: 10
+2025-04-22 23:28:15,921 - INFO - Scraping complete!
+2025-04-22 23:28:15,922 - INFO - Total lives scraped: 10
+2025-04-22 23:28:47,636 - INFO - Starting scraper...
+2025-04-22 23:28:47,636 - INFO - Clicking 'Livestream' link inside #page_header_left...
+2025-04-22 23:28:54,864 - INFO - Scraping page 1...
+2025-04-22 23:28:54,894 - INFO - Loaded 10 livestreams
+2025-04-22 23:28:55,031 - INFO - Downloaded coverpic for live live_1_image_content_1.png
+2025-04-22 23:28:55,738 - INFO - Saved live_product_1_image_1.png with product ID 1729542997783449608
+2025-04-22 23:28:56,238 - INFO - Saved live_product_1_image_2.png with product ID 1730548745653948424
+2025-04-22 23:28:56,850 - INFO - Saved live_product_1_image_3.png with product ID 1729938571950985224
+2025-04-22 23:28:57,404 - INFO - 
+Live 1:
+2025-04-22 23:28:57,514 - INFO - Downloaded coverpic for live live_2_image_content_2.png
+2025-04-22 23:28:58,017 - INFO - Saved live_product_2_image_4.png with product ID 1730586236661895235
+2025-04-22 23:28:58,333 - INFO - Saved live_product_2_image_5.png with product ID 1730362285233246275
+2025-04-22 23:28:58,835 - INFO - Saved live_product_2_image_6.png with product ID 1729989006154829891
+2025-04-22 23:28:59,346 - INFO - 
+Live 1:
+2025-04-22 23:28:59,348 - INFO - 
+Live 2:
+2025-04-22 23:28:59,481 - INFO - Downloaded coverpic for live live_3_image_content_3.png
+2025-04-22 23:29:00,156 - INFO - Saved live_product_3_image_7.png with product ID 1729534696881558144
+2025-04-22 23:29:00,594 - INFO - Saved live_product_3_image_8.png with product ID 1729579556672148096
+2025-04-22 23:29:00,953 - INFO - Saved live_product_3_image_9.png with product ID 1729596073113195136
+2025-04-22 23:29:01,343 - INFO - 
+Live 1:
+2025-04-22 23:29:01,345 - INFO - 
+Live 2:
+2025-04-22 23:29:01,346 - INFO - 
+Live 3:
+2025-04-22 23:29:01,423 - INFO - Downloaded coverpic for live live_4_image_content_4.png
+2025-04-22 23:29:01,837 - INFO - Saved live_product_4_image_10.png with product ID 1730918019362230280
+2025-04-22 23:29:02,249 - INFO - Saved live_product_4_image_11.png with product ID 1729542997783449608
+2025-04-22 23:29:02,776 - INFO - Saved live_product_4_image_12.png with product ID 1730548745653948424
+2025-04-22 23:29:03,310 - INFO - 
+Live 1:
+2025-04-22 23:29:03,312 - INFO - 
+Live 2:
+2025-04-22 23:29:03,313 - INFO - 
+Live 3:
+2025-04-22 23:29:03,314 - INFO - 
+Live 4:
+2025-04-22 23:29:03,383 - INFO - Downloaded coverpic for live live_5_image_content_5.png
+2025-04-22 23:29:04,043 - INFO - Saved live_product_5_image_13.png with product ID 1729562221692948644
+2025-04-22 23:29:04,381 - INFO - Saved live_product_5_image_14.png with product ID 1729537884756152484
+2025-04-22 23:29:04,688 - INFO - Saved live_product_5_image_15.png with product ID 1729597707943579812
+2025-04-22 23:29:05,213 - INFO - 
+Live 1:
+2025-04-22 23:29:05,214 - INFO - 
+Live 2:
+2025-04-22 23:29:05,216 - INFO - 
+Live 3:
+2025-04-22 23:29:05,217 - INFO - 
+Live 4:
+2025-04-22 23:29:05,222 - INFO - 
+Live 5:
+2025-04-22 23:29:05,303 - INFO - Downloaded coverpic for live live_6_image_content_6.png
+2025-04-22 23:29:05,926 - INFO - Saved live_product_6_image_16.png with product ID 1729542997783449608
+2025-04-22 23:29:06,339 - INFO - Saved live_product_6_image_17.png with product ID 1730548745653948424
+2025-04-22 23:29:06,662 - INFO - Saved live_product_6_image_18.png with product ID 1729736994697482248
+2025-04-22 23:29:07,393 - INFO - 
+Live 1:
+2025-04-22 23:29:07,395 - INFO - 
+Live 2:
+2025-04-22 23:29:07,396 - INFO - 
+Live 3:
+2025-04-22 23:29:07,398 - INFO - 
+Live 4:
+2025-04-22 23:29:07,399 - INFO - 
+Live 5:
+2025-04-22 23:29:07,401 - INFO - 
+Live 6:
+2025-04-22 23:29:07,468 - INFO - Downloaded coverpic for live live_7_image_content_7.png
+2025-04-22 23:29:07,911 - INFO - Saved live_product_7_image_19.png with product ID 1731060297312931895
+2025-04-22 23:29:08,290 - INFO - Saved live_product_7_image_20.png with product ID 1729649195107192943
+2025-04-22 23:29:08,698 - INFO - Saved live_product_7_image_21.png with product ID 1730937656723607805
+2025-04-22 23:29:09,481 - INFO - 
+Live 1:
+2025-04-22 23:29:09,483 - INFO - 
+Live 2:
+2025-04-22 23:29:09,484 - INFO - 
+Live 3:
+2025-04-22 23:29:09,485 - INFO - 
+Live 4:
+2025-04-22 23:29:09,487 - INFO - 
+Live 5:
+2025-04-22 23:29:09,488 - INFO - 
+Live 6:
+2025-04-22 23:29:09,490 - INFO - 
+Live 7:
+2025-04-22 23:29:09,560 - INFO - Downloaded coverpic for live live_8_image_content_8.png
+2025-04-22 23:29:09,973 - INFO - Saved live_product_8_image_22.png with product ID 1729654449419424166
+2025-04-22 23:29:10,360 - INFO - Saved live_product_8_image_23.png with product ID 1730415399686606857
+2025-04-22 23:29:10,891 - INFO - Saved live_product_8_image_24.png with product ID 1729562343719538908
+2025-04-22 23:29:11,752 - INFO - 
+Live 1:
+2025-04-22 23:29:11,753 - INFO - 
+Live 2:
+2025-04-22 23:29:11,755 - INFO - 
+Live 3:
+2025-04-22 23:29:11,756 - INFO - 
+Live 4:
+2025-04-22 23:29:11,757 - INFO - 
+Live 5:
+2025-04-22 23:29:11,759 - INFO - 
+Live 6:
+2025-04-22 23:29:11,761 - INFO - 
+Live 7:
+2025-04-22 23:29:11,763 - INFO - 
+Live 8:
+2025-04-22 23:29:11,837 - INFO - Downloaded coverpic for live live_9_image_content_9.png
+2025-04-22 23:29:12,464 - INFO - Saved live_product_9_image_25.png with product ID 1730548761579393857
+2025-04-22 23:29:12,767 - INFO - Saved live_product_9_image_26.png with product ID 1729570465770214209
+2025-04-22 23:29:13,093 - INFO - Saved live_product_9_image_27.png with product ID 1729940035404993345
+2025-04-22 23:29:14,004 - INFO - 
+Live 1:
+2025-04-22 23:29:14,006 - INFO - 
+Live 2:
+2025-04-22 23:29:14,007 - INFO - 
+Live 3:
+2025-04-22 23:29:14,009 - INFO - 
+Live 4:
+2025-04-22 23:29:14,012 - INFO - 
+Live 5:
+2025-04-22 23:29:14,013 - INFO - 
+Live 6:
+2025-04-22 23:29:14,015 - INFO - 
+Live 7:
+2025-04-22 23:29:14,019 - INFO - 
+Live 8:
+2025-04-22 23:29:14,021 - INFO - 
+Live 9:
+2025-04-22 23:29:14,131 - INFO - Downloaded coverpic for live live_10_image_content_10.png
+2025-04-22 23:29:14,671 - INFO - Saved live_product_10_image_28.png with product ID 1730617684471878595
+2025-04-22 23:29:14,969 - INFO - Saved live_product_10_image_29.png with product ID 1729607382866629571
+2025-04-22 23:29:15,463 - INFO - Saved live_product_10_image_30.png with product ID 1729759134475785155
+2025-04-22 23:29:16,393 - INFO - 
+Live 1:
+2025-04-22 23:29:16,396 - INFO - 
+Live 2:
+2025-04-22 23:29:16,397 - INFO - 
+Live 3:
+2025-04-22 23:29:16,400 - INFO - 
+Live 4:
+2025-04-22 23:29:16,405 - INFO - 
+Live 5:
+2025-04-22 23:29:16,407 - INFO - 
+Live 6:
+2025-04-22 23:29:16,409 - INFO - 
+Live 7:
+2025-04-22 23:29:16,411 - INFO - 
+Live 8:
+2025-04-22 23:29:16,415 - INFO - 
+Live 9:
+2025-04-22 23:29:16,416 - INFO - 
+Live 10:
+2025-04-22 23:29:16,429 - INFO - Scraping complete!
+2025-04-22 23:29:16,430 - INFO - Total lives scraped: 10
+2025-04-22 23:29:16,430 - INFO - Scraping complete!
+2025-04-22 23:29:16,430 - INFO - Total lives scraped: 10
