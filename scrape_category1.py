@@ -5,6 +5,7 @@ import os
 import re
 import requests
 import logging
+import random
 
 Shop_dir = "Top_Categories"
 if not os.path.exists(Shop_dir):
@@ -90,6 +91,7 @@ async def extract_category_data(page, page_num):
                 if await image_div.is_visible():
                     await image_div.scroll_into_view_if_needed()
                     await image_div.hover()
+                    await asyncio.sleep(random.uniform(0.2, 0.5))
                     logging.info(f"Hovered over image div {image_counter}")
                     await asyncio.sleep(0.2)
             except Exception as e:
@@ -140,7 +142,7 @@ async def extract_category_data(page, page_num):
         category_data = {
             "Row Key": row_key,
             "Rank": index + 1,
-            "Catergory Name": category_name,
+            "Category Name": category_name,
             "Best Seller IDs": best_seller_ids,
             "Best Sellers": [],  # filled later
             "Best Seller Prices": [],  # filled later

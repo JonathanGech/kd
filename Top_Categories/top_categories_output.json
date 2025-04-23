@@ -1,0 +1,332 @@
+[
+    {
+        "Row Key": "601450",
+        "Rank": 1,
+        "Category Name": "Beauty & Personal Care",
+        "Best Seller IDs": [
+            "1729385986905510533",
+            "1730145765796646939",
+            "1729606769780232427"
+        ],
+        "Best Sellers": [
+            "Dream Coat For Curly Hair",
+            "[Dr. Melaxin Official] Peel Shot Glow Rice Ampoule Duo - Serums for Brightening, Exfoliating, and Moisturizing - Suitable for All Skin Types",
+            "[medicube Official] Affordable Glass Glow Skincare Set | Includes 8 TOP-SELLING products for Gentle Skin Renewal"
+        ],
+        "Best Seller Prices": [
+            "$24.00",
+            "$45.00",
+            "$93.00"
+        ],
+        "Best Seller Images": [
+            "shop_1_image_1.png",
+            "shop_1_image_2.png",
+            "shop_1_image_3.png"
+        ],
+        "Revenue": "$37.23m",
+        "Revenue Growth Rate": "-8.44%",
+        "Revenue Trend": "revenue_trend_1.png",
+        "Number of Shops": "11259",
+        "Revenue per Shop": "$3.31k",
+        "Category Level": "L1",
+        "Top 3 Shops Ratio": "8.59%",
+        "Top 10 Shops Ratio": "17.99%"
+    },
+    {
+        "Row Key": "601152",
+        "Rank": 2,
+        "Category Name": "Womenswear & Underwear",
+        "Best Seller IDs": [
+            "1729418496836080191",
+            "1729420460993712801",
+            "1729455910472159340"
+        ],
+        "Best Sellers": [
+            "CAKES circles - The 1st viral non-adhesive nip cover - Official CAKES",
+            "SNOWY Sticky Inserts - Instant Boost Sticky Inserts by SNOWY",
+            "SHAPSHE Waist Shapewear for Women Tummy Control Girdle Workout Shapewear with Adjustable Shoulder Strap"
+        ],
+        "Best Seller Prices": [
+            "$30.00 - $33.00",
+            "$39.50 - $39.79",
+            "$46.58 - $47.98"
+        ],
+        "Best Seller Images": [
+            "shop_2_image_4.png",
+            "shop_2_image_5.png",
+            "shop_2_image_6.png"
+        ],
+        "Revenue": "$25.42m",
+        "Revenue Growth Rate": "-0.43%",
+        "Revenue Trend": "revenue_trend_2.png",
+        "Number of Shops": "10018",
+        "Revenue per Shop": "$2.54k",
+        "Category Level": "L1",
+        "Top 3 Shops Ratio": "4.57%",
+        "Top 10 Shops Ratio": "12.87%"
+    },
+    {
+        "Row Key": "700645",
+        "Rank": 3,
+        "Category Name": "Health",
+        "Best Seller IDs": [
+            "1729497551838548393",
+            "1729465781365085154",
+            "1730501450773467985"
+        ],
+        "Best Sellers": [
+            "Yerba Magic | Yerba Mate Instant Tea Powder | 20 or 30 Serving Options",
+            "Ultimate Men's Health Bundle - Snap Supplements - Nitric Oxide Booster 60ct + Prostate Health Bundle - Natural Supplement Capsules - Support Blood Circulation & Prostate Health",
+            "ZOOONE NR1000 - NAD+ Berry Flavor Drink Mix for Skin Aging Support, Energy, and Focus - 30 Pack -"
+        ],
+        "Best Seller Prices": [
+            "$29.99 - $54.99",
+            "$39.95",
+            "$29.99 - $83.99"
+        ],
+        "Best Seller Images": [
+            "shop_3_image_7.png",
+            "shop_3_image_8.png",
+            "shop_3_image_9.png"
+        ],
+        "Revenue": "$18.65m",
+        "Revenue Growth Rate": "-17.37%",
+        "Revenue Trend": "revenue_trend_3.png",
+        "Number of Shops": "2641",
+        "Revenue per Shop": "$7.06k",
+        "Category Level": "L1",
+        "Top 3 Shops Ratio": "13.86%",
+        "Top 10 Shops Ratio": "36.48%"
+    },
+    {
+        "Row Key": "700646",
+        "Rank": 4,
+        "Category Name": "Nutrition & Wellness",
+        "Best Seller IDs": [
+            "1729497551838548393",
+            "1729465781365085154",
+            "1730501450773467985"
+        ],
+        "Best Sellers": [
+            "Yerba Magic | Yerba Mate Instant Tea Powder | 20 or 30 Serving Options",
+            "Ultimate Men's Health Bundle - Snap Supplements - Nitric Oxide Booster 60ct + Prostate Health Bundle - Natural Supplement Capsules - Support Blood Circulation & Prostate Health",
+            "ZOOONE NR1000 - NAD+ Berry Flavor Drink Mix for Skin Aging Support, Energy, and Focus - 30 Pack -"
+        ],
+        "Best Seller Prices": [
+            "$29.99 - $54.99",
+            "$39.95",
+            "$29.99 - $83.99"
+        ],
+        "Best Seller Images": [
+            "shop_4_image_10.png",
+            "shop_4_image_11.png",
+            "shop_4_image_12.png"
+        ],
+        "Revenue": "$18.18m",
+        "Revenue Growth Rate": "-17.23%",
+        "Revenue Trend": "revenue_trend_4.png",
+        "Number of Shops": "2092",
+        "Revenue per Shop": "$8.69k",
+        "Category Level": "L2",
+        "Top 3 Shops Ratio": "14.22%",
+        "Top 10 Shops Ratio": "37.42%"
+    },
+    {
+        "Row Key": "700650",
+        "Rank": 5,
+        "Category Name": "Vitamins, Minerals & Wellness Supplements",
+        "Best Seller IDs": [
+            "1729497551838548393",
+            "1729465781365085154",
+            "1729417158856250354"
+        ],
+        "Best Sellers": [
+            "Yerba Magic | Yerba Mate Instant Tea Powder | 20 or 30 Serving Options",
+            "Ultimate Men's Health Bundle - Snap Supplements - Nitric Oxide Booster 60ct + Prostate Health Bundle - Natural Supplement Capsules - Support Blood Circulation & Prostate Health",
+            "Physician's Choice Hack your Tummy Bundle: Digestive Enzymes & 60 Billion Probiotic - Digestion, Immune & Bloating Support for Men & Women"
+        ],
+        "Best Seller Prices": [
+            "$29.99 - $54.99",
+            "$39.95",
+            "$34.97 - $59.48"
+        ],
+        "Best Seller Images": [
+            "shop_5_image_13.png",
+            "shop_5_image_14.png",
+            "shop_5_image_15.png"
+        ],
+        "Revenue": "$15.10m",
+        "Revenue Growth Rate": "-15.60%",
+        "Revenue Trend": "revenue_trend_5.png",
+        "Number of Shops": "1787",
+        "Revenue per Shop": "$8.45k",
+        "Category Level": "L3",
+        "Top 3 Shops Ratio": "16.79%",
+        "Top 10 Shops Ratio": "40.08%"
+    },
+    {
+        "Row Key": "603014",
+        "Rank": 6,
+        "Category Name": "Sports & Outdoor",
+        "Best Seller IDs": [
+            "1730762001521283364",
+            "1729577747003314278",
+            "1729568240189804836"
+        ],
+        "Best Sellers": [
+            "Halara 2-Piece Super High Waisted Back Pocket & Side Hidden Pocket 2-in-1 Yoga Shorts 5''-Longer Length, 2 Piece Sets Women, Gym Shorts, Summer Bottoms, Activewear#Outdoorfun#Coachella#Summer",
+            "MERACH Stair Stepper with Handlebar for Full-Body Workout, 300LBS Capacity, Compact Cardio Climber Exercise Machine with Adjustable Pedals, Vertical Climber for Home Gym",
+            "Halara Women's SoCinched High Waisted Scrunch Butt Lifting Tummy Control Side Pocket Training UltraSculpt Leggings No Front Crotch Seam#springtok#Outdoorfun#Coachella#Summer"
+        ],
+        "Best Seller Prices": [
+            "$39.95 - $42.95",
+            "$99.98 - $114.99",
+            "$34.95"
+        ],
+        "Best Seller Images": [
+            "shop_6_image_16.png",
+            "shop_6_image_17.png",
+            "shop_6_image_18.png"
+        ],
+        "Revenue": "$14.47m",
+        "Revenue Growth Rate": "-0.61%",
+        "Revenue Trend": "revenue_trend_6.png",
+        "Number of Shops": "7570",
+        "Revenue per Shop": "$1.91k",
+        "Category Level": "L1",
+        "Top 3 Shops Ratio": "15.06%",
+        "Top 10 Shops Ratio": "25.66%"
+    },
+    {
+        "Row Key": "951432",
+        "Rank": 7,
+        "Category Name": "Collectibles",
+        "Best Seller IDs": [
+            "1730548745653948424",
+            "1730649167649804511",
+            "1731058465623151046"
+        ],
+        "Best Sellers": [
+            "THE MONSTERS COCA-COLA SERIES-Vinyl Face Blind Box",
+            "ACBreakz Divisional Breakz",
+            "(1) Case Hit + (3) Black Sweats Divisional Break - Sports Trading Cards"
+        ],
+        "Best Seller Prices": [
+            "$39.99 - $239.94",
+            "$234.00 - $259.00",
+            "$999.00"
+        ],
+        "Best Seller Images": [
+            "shop_7_image_19.png",
+            "shop_7_image_20.png",
+            "shop_7_image_21.png"
+        ],
+        "Revenue": "$10.13m",
+        "Revenue Growth Rate": "-4.87%",
+        "Revenue Trend": "revenue_trend_7.png",
+        "Number of Shops": "3026",
+        "Revenue per Shop": "$3.35k",
+        "Category Level": "L1",
+        "Top 3 Shops Ratio": "14.91%",
+        "Top 10 Shops Ratio": "25.51%"
+    },
+    {
+        "Row Key": "601739",
+        "Rank": 8,
+        "Category Name": "Phones & Electronics",
+        "Best Seller IDs": [
+            "1729632298773615501",
+            "1729498852020949416",
+            "1730140386476396781"
+        ],
+        "Best Sellers": [
+            "3MP 2K Window Camera,2.4GHz & 5GHz WiFi Indoor Cameras for Home Security with ChromaMax Al Color Night Vision,Person & Motion Detection,24/7 Recording,Easy & Quick Install",
+            "GLOBAL PICK Magcubic Portable Projector HY300 Pro, Android 11 Dual Wifi6 260ANSI Allwinner H713 BT5.0 1080P 1280*720P Projector, Multifunctional Projector for Home Cinema, Outdoor, Home Essentials",
+            "Vacuum Magnetic Phone Stand. Foldable And Retractable, Strongmagnet, Portable, Multi-Scene Useeasy To Use, Zero Bubbles, Your Screenstays Spotless"
+        ],
+        "Best Seller Prices": [
+            "$37.99 - $85.99",
+            "$40.52",
+            "$9.99"
+        ],
+        "Best Seller Images": [
+            "shop_8_image_22.png",
+            "shop_8_image_23.png",
+            "shop_8_image_24.png"
+        ],
+        "Revenue": "$9.98m",
+        "Revenue Growth Rate": "1.02%",
+        "Revenue Trend": "revenue_trend_8.png",
+        "Number of Shops": "6201",
+        "Revenue per Shop": "$1.61k",
+        "Category Level": "L1",
+        "Top 3 Shops Ratio": "6.41%",
+        "Top 10 Shops Ratio": "16.34%"
+    },
+    {
+        "Row Key": "605248",
+        "Rank": 9,
+        "Category Name": "Fashion Accessories",
+        "Best Seller IDs": [
+            "1729421911834792300",
+            "1730556085980402209",
+            "1729391773365670446"
+        ],
+        "Best Sellers": [
+            "Back To School Sunglasses for Travel Use, Gifts for Him, Fashion Fall/Summer 2024 Geometric Frame Double Beam Sun Protection Glasses Trends, Travel Accessories, Fall Outfits, Fall Freshness, Vacation Outfits Fall Outfits 2024",
+            "[WEAR GO HALF WIG] ISEE Invisible Hairline Wear Go Kinky Curly Half Wig Glueless Human Hair Wigs Seamless Flip Over Wig Beginner Friendly Springtok",
+            "OQ HAIR Afro Curly V Part Wig No Leave Out Thin Part Human Hair Wigs 0 Skill Needed Glueless Wig Beginner Friendly Springtok"
+        ],
+        "Best Seller Prices": [
+            "$4.20 - $4.85",
+            "$99.97 - $182.07",
+            "$91.78 - $183.16"
+        ],
+        "Best Seller Images": [
+            "shop_9_image_25.png",
+            "shop_9_image_26.png",
+            "shop_9_image_27.png"
+        ],
+        "Revenue": "$9.95m",
+        "Revenue Growth Rate": "-9.27%",
+        "Revenue Trend": "revenue_trend_9.png",
+        "Number of Shops": "8754",
+        "Revenue per Shop": "$1.14k",
+        "Category Level": "L1",
+        "Top 3 Shops Ratio": "8.27%",
+        "Top 10 Shops Ratio": "15.91%"
+    },
+    {
+        "Row Key": "810000",
+        "Rank": 10,
+        "Category Name": "Trading Cards & Accessories",
+        "Best Seller IDs": [
+            "1730649167649804511",
+            "1731058465623151046",
+            "1730603367981093318"
+        ],
+        "Best Sellers": [
+            "ACBreakz Divisional Breakz",
+            "(1) Case Hit + (3) Black Sweats Divisional Break - Sports Trading Cards",
+            "(1) Juiced + (3) Black Sweats Divisional Break - Sports Trading Cards"
+        ],
+        "Best Seller Prices": [
+            "$234.00 - $259.00",
+            "$999.00",
+            "$299.00"
+        ],
+        "Best Seller Images": [
+            "shop_10_image_28.png",
+            "shop_10_image_29.png",
+            "shop_10_image_30.png"
+        ],
+        "Revenue": "$8.69m",
+        "Revenue Growth Rate": "-0.38%",
+        "Revenue Trend": "revenue_trend_10.png",
+        "Number of Shops": "1892",
+        "Revenue per Shop": "$4.59k",
+        "Category Level": "L2",
+        "Top 3 Shops Ratio": "10.04%",
+        "Top 10 Shops Ratio": "20.53%"
+    }
+]

@@ -127,7 +127,7 @@ async def extract_creator_data(page, page_num):
         image_divs = await row.query_selector_all("div.Component-Image.cover.cover")
         for image_div in image_divs:
             await image_div.hover()
-            await asyncio.sleep(random.uniform(0.2, 0.5))
+            await asyncio.sleep(random.uniform(0.3, 0.5))
 
             style = await image_div.get_attribute("style")
             match = re.search(r'url\(["\']?(.*?)["\']?\)', style)
@@ -151,7 +151,7 @@ async def extract_creator_data(page, page_num):
                         logging.info(f"Failed to download image (status {response.status_code})")
                 except Exception as e:
                     logging.error(f"Error downloading {url}: {e}")
-        await logo_el.hover()
+        await creator_name_el.hover()
         await asyncio.sleep(random.uniform(0.2, 0.5))
 
         # Best Seller Product Names (collected like a shared pool)
@@ -160,10 +160,10 @@ async def extract_creator_data(page, page_num):
             product_name = await p.inner_text()
             normalized_product_name = ' '.join(product_name.split())
 
-            if normalized_product_name not in all_product_names:
-                all_product_names.append(normalized_product_name)
+            # if normalized_product_name not in all_product_names:
+            all_product_names.append(normalized_product_name)
         
-        all_product_prices = []
+        # all_product_prices = []
         # Best Seller Prices (similarly, as shared pool)
         price_elements = await page.query_selector_all("div.text-\\[16px\\].min-w-\\[80px\\].h-\\[20px\\].font-medium.bg-white")
         for el in price_elements:

@@ -5,6 +5,7 @@ import os
 import re
 import requests
 import logging
+import random
 
 Product_dir = "Top_Products"
 if not os.path.exists(Product_dir):
@@ -85,7 +86,8 @@ async def extract_product_data(page, page_num):
         best_seller_ids = []
         for image_div in image_divs:
             await image_div.hover()
-            await asyncio.sleep(1)
+            # await asyncio.sleep(1)
+            await asyncio.sleep(random.uniform(0.2, 0.5))
             image_name = f"product_{rank_counter}_image_{image_counter}.png"
             image_path = os.path.join(output_dir, image_name)
 
@@ -135,8 +137,8 @@ async def extract_product_data(page, page_num):
                         with open(image_path, "wb") as f:
                             f.write(response.content)
                         best_seller_ids.append(product_id)  # ✅ Save product ID
-                        logging.info(f"Saved {image_name} with product ID {product_id}")
-                        # best_seller_images.append(image_name)
+                        best_seller_images.append(image_name)
+                        logging.info(f"Saved {image_name} with product ID {product_id}")       
                         image_counter += 1
                         logging.info(f"Downloaded image {image_name}")
                 except Exception as e:
@@ -162,7 +164,8 @@ async def extract_product_data(page, page_num):
             
 
         await product_name_el.hover()
-        await asyncio.sleep(0.2)
+        # await asyncio.sleep(0.2)
+        await asyncio.sleep(random.uniform(0.2, 0.5))
 
         td_elements = await row.query_selector_all("td")
         rev_el = await row.query_selector("td.ant-table-cell.ant-table-column-sort")
@@ -195,7 +198,7 @@ async def extract_product_data(page, page_num):
             "Item Sold": item_sold,
             "Average Unit Price": avg_unit_price,
             "Commission Rate": commission_rate,
-            "Best Seller IDs": best_seller_ids,
+            "Highest Revenue Videos IDs": best_seller_ids,
             "Highest Revenue Videos": highest_revenue_videos,
             "Highest Revenue Videos Images": best_seller_images,
             "Creator Number": creator_number,
