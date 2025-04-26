@@ -4,14 +4,18 @@ import json
 import os
 import re
 import requests
-import logging
 import random
+from p_logging import get_logger
 
-Shop_dir = "Top_Videos"
-if not os.path.exists(Shop_dir):
-    os.makedirs(Shop_dir)
 
-log_file_path = "Top_Videos/Top_Videos.log"
+Videos_dir = "Top_Videos"
+if not os.path.exists(Videos_dir):
+    os.makedirs(Videos_dir)
+
+log_file_path = os.path.join(Videos_dir, "Top_Videos.log")
+logger = get_logger('top_videos_logger', log_file_path)
+
+logger.info("This will go ONLY to Top_Videos.log")
 
 output_dir = "Top_Videos/video_content_images"
 video_product_dir = "Top_Videos/video_product_images"
@@ -34,16 +38,16 @@ async def extract_video_data(page, page_num):
     global image_counter, logo_counter, trend_counter, rank_counter
 
     # Base index starts at 1 for page 1, 51 for page 2, 101 for page 3, etc.
-    base_index = 1 + (page_num - 1) * 10
+    base_index = 1 + (page_num - 1) * 50
     image_counter = logo_counter = trend_counter = rank_counter = base_index
 
     # Continue with the rest of your scraping logic...
-    logging.info(f"Scraping page {page_num}...")
+    logger.info(f"Scraping page {page_num}...")
 
     await page.wait_for_selector(".ant-table-row", timeout=10000)
 
     rows = await page.query_selector_all(".ant-table-row")
-    logging.info(f"Loaded {len(rows)} videos")
+    logger.info(f"Loaded {len(rows)} videos")
 
     all_videos = []
     all_product_names = []
@@ -65,15 +69,15 @@ async def extract_video_data(page, page_num):
                 try:
                     response = requests.get(logo_url, headers=headers)
                     if response.status_code == 200:
-                        product_image_filename = f"product_logo_{rank_counter}.png"
+                        product_image_filename = f"product_logo_{row_key}.png"
                         with open(os.path.join(video_product_dir, product_image_filename), "wb") as f:
                             f.write(response.content)
-                        logging.info(f"Saved product {product_image_filename}")
+                        logger.info(f"Saved product {product_image_filename}")
                         # logo_counter += 1
                     else:
-                        logging.info(f"Failed to download product image (status {response.status_code})")
+                        logger.info(f"Failed to download product image (status {response.status_code})")
                 except Exception as e:
-                    logging.error(f"Error downloading product {logo_url}: {e}")
+                    logger.error(f"Error downloading product {logo_url}: {e}")
 
         # product Profile
         video_name_el = await row.query_selector("div.group-hover\\:text-primary")
@@ -95,9 +99,10 @@ async def extract_video_data(page, page_num):
         for image_div in image_divs:
             # await image_div.hover()
             # await asyncio.sleep(3)
-            await asyncio.sleep(random.uniform(0.2, 0.5))
+            # await asyncio.sleep(random.uniform(0.2, 0.5))
+            await asyncio.sleep(.2)
 
-            image_name = f"product_{rank_counter}_image_{image_counter}.png"
+            image_name = f"product_{row_key}_image_{image_counter}.png"
             image_path = os.path.join(output_dir, image_name)
 
             # Save thumbnail image
@@ -113,12 +118,12 @@ async def extract_video_data(page, page_num):
                         video_content_image = image_name
                         if image_name not in all_product_names:
                             all_product_names.append(image_name)
-                        logging.info(f"Saved {image_name}")
+                        logger.info(f"Saved {image_name}")
                         image_counter += 1
                     else:
-                        logging.info(f"Failed to download image (status {response.status_code})")
+                        logger.info(f"Failed to download image (status {response.status_code})")
                 except Exception as e:
-                    logging.error(f"Error downloading {url}: {e}")
+                    logger.error(f"Error downloading {url}: {e}")
 
             # Save video from file dialog
             # try:
@@ -128,9 +133,9 @@ async def extract_video_data(page, page_num):
             #     video_filename = image_name.replace(".png", ".mp4")
             #     video_path = os.path.join(video_content_dir, video_filename)
             #     await download.save_as(video_path)
-            #     logging.info(f"Saved video: {video_filename}")
+            #     logger.info(f"Saved video: {video_filename}")
             # except Exception as e:
-            #     logging.error(f"Error downloading video: {e}")
+            #     logger.error(f"Error downloading video: {e}")
         
 
 
@@ -158,26 +163,26 @@ async def extract_video_data(page, page_num):
         revenue_trend_filename = "N/A"
         if len(td_elements) > 5:
             try:
-                revenue_trend_filename = f"revenue_trend_{rank_counter}.png"
+                revenue_trend_filename = f"revenue_trend_{row_key}.png"
                 await td_elements[5].screenshot(path=os.path.join(trend_dir, revenue_trend_filename))
-                logging.info(f"Screenshot saved for revenue trend: {revenue_trend_filename}")
+                logger.info(f"Screenshot saved for revenue trend: {revenue_trend_filename}")
             except Exception as e:
-                logging.error(f"Error capturing screenshot for revenue trend: {e}")
+                logger.error(f"Error capturing screenshot for revenue trend: {e}")
 
         if len(td_elements) > 7:
             try:
-                views_trend_filename = f"views_trend_{rank_counter}.png"
+                views_trend_filename = f"views_trend_{row_key}.png"
                 await td_elements[7].screenshot(path=os.path.join(trend_dir, views_trend_filename))
-                logging.info(f"Screenshot saved for views trend: {views_trend_filename}")
+                logger.info(f"Screenshot saved for views trend: {views_trend_filename}")
             except Exception as e:
-                logging.error(f"Error capturing screenshot for views trend: {e}")
+                logger.error(f"Error capturing screenshot for views trend: {e}")
 
     
         prod_image_div = await row.query_selector("div.Component-Image.cover.cover")
         best_seller_ids = []
         if prod_image_div:
-            await prod_image_div.hover()
-            await asyncio.sleep(.3)
+            # await prod_image_div.hover()
+            # await asyncio.sleep(.2)
 
                 # Image URL
             style = await prod_image_div.get_attribute("style")
@@ -187,27 +192,28 @@ async def extract_video_data(page, page_num):
                 id_match = re.search(r'tiktok\.product/(\d+)/', url)
                 product_id = id_match.group(1) if id_match else None
 
-                logging.info(f"Extracted URL: {url}")
-                logging.info(f"Extracted Product ID: {product_id}")
+                logger.info(f"Extracted URL: {url}")
+                logger.info(f"Extracted Product ID: {product_id}")
                 try:
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
-                        image_name = f"product_{rank_counter}_image_{image_counter}.png"
+                        image_name = f"product_{product_id}_image_{image_counter}.png"
                         image_path = os.path.join(output_dir, image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
                         product_image_filename = image_name
                         best_seller_ids.append(product_id)  # ✅ Save product ID
-                        logging.info(f"Saved {image_name} with product ID {product_id}")
-                        # logging.info(f"Saved {image_name}")
+                        logger.info(f"Saved {image_name} with product ID {product_id}")
+                        # logger.info(f"Saved {image_name}")
                         image_counter += 1
                     else:
-                        logging.info(f"Failed to download image (status {response.status_code})")
+                        logger.info(f"Failed to download image (status {response.status_code})")
                 except Exception as e:
-                    logging.error(f"Error downloading {url}: {e}")
+                    logger.error(f"Error downloading {url}: {e}")
 
         await row.hover()
-        await asyncio.sleep(random.uniform(0.2, 0.5))
+        # await asyncio.sleep(random.uniform(0.2, 0.5))
+        await asyncio.sleep(.1)
 
         # Product Names
         product_name = None
@@ -259,17 +265,17 @@ async def extract_video_data(page, page_num):
 
         # Display results
         for i, shop in enumerate(all_videos):
-            logging.info(f"\nVideo {i + 1}:")
+            logger.info(f"\nVideo {i + 1}:")
             for k, v in shop.items():
                 print(f"  {k}: {v if not isinstance(v, list) else ', '.join(v)}")        
     
     return all_videos
 
 async def run_video_scraper(page, page_num):
-    logging.info("Starting scraper...")
+    logger.info("Starting scraper...")
     try:
         if page_num == 1:
-            logging.info("Clicking 'Video' link inside #page_header_left...")
+            logger.info("Clicking 'Video' link inside #page_header_left...")
             await page.click("#page_header_left >> text=Video & Ad")
 
             await page.click("span.ant-select-selection-item")
@@ -277,7 +283,7 @@ async def run_video_scraper(page, page_num):
             options = await page.query_selector_all("div.ant-select-item-option-content")
             for option in options:
                 text = await option.inner_text()
-                if "10 / page" in text:
+                if "50 / page" in text:
                     await option.click()
                     break
             await page.click("div.h-\\[22px\\].hover\\:bg-\\[rgb\\(238\\,246\\,253\\)\\].rounded-\\[4px\\].pl-\\[4px\\].flex.items-center.justify-between.text-\\[13px\\].whitespace-nowrap")
@@ -300,7 +306,7 @@ async def run_video_scraper(page, page_num):
                             await page.click(selector)
                             await asyncio.sleep(4)
                         except Exception as e:
-                            logging.error(f"Page {page_num} navigation failed: {e}")
+                            logger.error(f"Page {page_num} navigation failed: {e}")
                             return
 
                     page_results = await extract_video_data(page, page_num)
@@ -320,22 +326,22 @@ async def run_video_scraper(page, page_num):
                             json.dump(page_results, f, ensure_ascii=False, indent=4)# Use a lock for file operations
                     
                 except Exception as e:
-                    logging.error(f"Error processing page {page_num}: {e}")
+                    logger.error(f"Error processing page {page_num}: {e}")
                     if "TargetClosedError" in str(e):
                         raise  # Re-raise if page was closed
         
         await process_page(page_num)
 
-        logging.info("Scraping complete!")
-        logging.info(f"Total products scraped: {len(all_results)}")
+        logger.info("Scraping complete!")
+        logger.info(f"Total products scraped: {len(all_results)}")
 
     except Exception as e:
-        logging.error(f"Scraping failed: {e}")
+        logger.error(f"Scraping failed: {e}")
         raise
 
-    logging.info("Scraping complete!")
-    logging.info(f"Total products scraped: {len(all_results)}")
+    logger.info("Scraping complete!")
+    logger.info(f"Total products scraped: {len(all_results)}")
 
 async def video_main(page):
-    for page_num in range(1,2):
+    for page_num in range(1,11):
         await run_video_scraper(page, page_num)  # You can loop this later if needed

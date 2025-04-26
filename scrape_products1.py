@@ -6,17 +6,28 @@ import re
 import requests
 import logging
 import random
+from p_logging import get_logger
+
+# Product_dir = "Top_Products"
+# if not os.path.exists(Product_dir):
+#     os.makedirs(Product_dir)
+
+# log_file_path = "Top_Products/Top_Products.log"
+
+# logger.basicConfig(level=logger.INFO, format="%(asctime)s - %(levelname)s - %(message)s", handlers=[
+#     logger.FileHandler(log_file_path),
+#     logger.StreamHandler()
+# ])
 
 Product_dir = "Top_Products"
 if not os.path.exists(Product_dir):
     os.makedirs(Product_dir)
 
-log_file_path = "Top_Products/Top_Products.log"
+log_file_path = os.path.join(Product_dir, "Top_Products.log")
+logger = get_logger('top_products_logger', log_file_path)
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s", handlers=[
-    logging.FileHandler(log_file_path),
-    logging.StreamHandler()
-])
+logger.info("This will go ONLY to Top_Products.log")
+
 
 output_dir = "Top_Products/best_selling_products_images"
 logo_dir = "Top_Products/product_logo"
@@ -38,15 +49,15 @@ async def extract_product_data(page, page_num):
     global image_counter, logo_counter, trend_counter, rank_counter
 
     # Base index starts at 1 for page 1, 51 for page 2, 101 for page 3, etc.
-    base_index = 1 + (page_num - 1) * 10
+    base_index = 1 + (page_num - 1) * 50
     image_counter = logo_counter = trend_counter = rank_counter = base_index
 
     # Continue with the rest of your scraping logic...
-    logging.info(f"Scraping page {page_num}...")
+    logger.info(f"Scraping page {page_num}...")
 
     await page.wait_for_selector(".ant-table-row.ant-table-row-level-0", timeout=15000)
     rows = await page.query_selector_all(".ant-table-row.ant-table-row-level-0")
-    logging.info(f"Loaded {len(rows)} products")
+    logger.info(f"Loaded {len(rows)} products")
 
     all_products = []
     headers = {
@@ -66,13 +77,13 @@ async def extract_product_data(page, page_num):
                 try:
                     response = requests.get(logo_url, headers=headers)
                     if response.status_code == 200:
-                        product_logo_filename = f"product_logo_{logo_counter}.png"
+                        product_logo_filename = f"product_logo_{row_key}.png"
                         with open(os.path.join(logo_dir, product_logo_filename), "wb") as f:
                             f.write(response.content)
                         logo_counter += 1
-                        logging.info(f"Downloaded logo for product {index + 1} as {product_logo_filename}")
+                        logger.info(f"Downloaded logo for product {index + 1} as {product_logo_filename}")
                 except Exception as e:
-                    logging.error(f"Failed to download logo for product {index + 1}: {e}")
+                    logger.error(f"Failed to download logo for product {index + 1}: {e}")
 
         product_name_el = await row.query_selector("div.line-clamp-2:not(.text-\\[13px\\]):not(.font-medium)")
         product_name = await product_name_el.inner_text() if product_name_el else "N/A"
@@ -85,11 +96,11 @@ async def extract_product_data(page, page_num):
         highest_revenue_videos = []
         best_seller_ids = []
         for image_div in image_divs:
-            await image_div.hover()
+            # await image_div.hover()
             # await asyncio.sleep(1)
-            await asyncio.sleep(random.uniform(0.2, 0.5))
-            image_name = f"product_{rank_counter}_image_{image_counter}.png"
-            image_path = os.path.join(output_dir, image_name)
+            # await asyncio.sleep(random.uniform(0.2, 0.5))
+            # await asyncio.sleep(0.2)
+            
 
             max_retries = 1
             retry_count = 0
@@ -107,7 +118,7 @@ async def extract_product_data(page, page_num):
             #                 # error_text = await error_element.inner_text()
             #                 # Your download limit has been reached. Please go to the pricing page to purchase the recharge plan.
             #                 # if "Your download limit has been reached" in error_text:
-            #                 logging.warning(f"Skipping video download: {index+1}")
+            #                 logger.warning(f"Skipping video download: {index+1}")
             #                 retry_count += 1
             #                 break 
                         
@@ -117,16 +128,17 @@ async def extract_product_data(page, page_num):
             #         await download.save_as(video_path)
             #         highest_revenue_videos.append(video_filename)
             #         video_downloaded = True
-            #         logging.info(f"Downloaded video {video_filename}")
+            #         logger.info(f"Downloaded video {video_filename}")
             #     except Exception as e:
             #         retry_count += 1
-            #         logging.error(f"Failed to download video after {retry_count} retries: {e}")
+            #         logger.error(f"Failed to download video after {retry_count} retries: {e}")
             #         await asyncio.sleep(1)
-            if not video_downloaded:
-                logging.warning(f"Video failed to download after {max_retries} retries for image {image_name}. Proceeding to image download.")
+            # if not video_downloaded:
+            #     logger.warning(f"Video failed to download after {max_retries} retries for image {image_name}. Proceeding to image download.")
 
             style = await image_div.get_attribute("style")
             match = re.search(r'url\(["\']?(.*?)["\']?\)', style)
+            image_name = "N/A"
             if match:
                 url = match.group(1)
                 id_match = re.search(r'tiktok\.video/(\d+)/', url)
@@ -134,15 +146,17 @@ async def extract_product_data(page, page_num):
                 try:
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
+                        image_name = f"video_{product_id}_image_{image_counter}.png"
+                        image_path = os.path.join(output_dir, image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
                         best_seller_ids.append(product_id)  # ✅ Save product ID
                         best_seller_images.append(image_name)
-                        logging.info(f"Saved {image_name} with product ID {product_id}")       
+                        logger.info(f"Saved {image_name} with product ID {product_id}")       
                         image_counter += 1
-                        logging.info(f"Downloaded image {image_name}")
+                        logger.info(f"Downloaded image {image_name}")
                 except Exception as e:
-                    logging.error(f"Failed to download image {image_name}: {e}")
+                    logger.error(f"Failed to download image {image_name}: {e}")
 
             
             # while retry_count < max_retries and not video_downloaded:
@@ -156,16 +170,16 @@ async def extract_product_data(page, page_num):
             #         await download.save_as(video_path)
             #         highest_revenue_videos.append(video_filename)
             #         video_downloaded = True
-            #         logging.info(f"Downloaded video {video_filename}")
+            #         logger.info(f"Downloaded video {video_filename}")
             #     except Exception as e:
             #         retry_count += 1
-            #         logging.error(f"Failed to download video after {retry_count} retries: {e}")
+            #         logger.error(f"Failed to download video after {retry_count} retries: {e}")
             #         await asyncio.sleep(2)
             
 
         await product_name_el.hover()
-        # await asyncio.sleep(0.2)
-        await asyncio.sleep(random.uniform(0.2, 0.5))
+        await asyncio.sleep(0.2)
+        # await asyncio.sleep(random.uniform(0.2, 0.5))
 
         td_elements = await row.query_selector_all("td")
         rev_el = await row.query_selector("td.ant-table-cell.ant-table-column-sort")
@@ -180,12 +194,12 @@ async def extract_product_data(page, page_num):
         revenue_trend_filename = "N/A"
         if len(td_elements) > 3:
             try:
-                revenue_trend_filename = f"revenue_trend_{trend_counter}.png"
+                revenue_trend_filename = f"revenue_trend_{row_key}.png"
                 await td_elements[3].screenshot(path=os.path.join(trend_dir, revenue_trend_filename))
                 # trend_counter += 1
-                logging.info(f"Captured revenue trend screenshot {revenue_trend_filename}")
+                logger.info(f"Captured revenue trend screenshot {revenue_trend_filename}")
             except Exception as e:
-                logging.error(f"Failed to capture revenue trend: {e}")
+                logger.error(f"Failed to capture revenue trend: {e}")
 
         product_data = {
             "Row Key": row_key,
@@ -213,7 +227,7 @@ async def extract_product_data(page, page_num):
     return all_products
 
 async def run_product_scraper(page, page_num):
-    logging.info("Starting scraper...")
+    logger.info("Starting scraper...")
     try:
         if page_num == 1:
             await page.click("#page_header_left >> text=Product")
@@ -223,7 +237,7 @@ async def run_product_scraper(page, page_num):
             options = await page.query_selector_all("div.ant-select-item-option-content")
             for option in options:
                 text = await option.inner_text()
-                if "10 / page" in text:
+                if "50 / page" in text:
                     await option.click()
                     break
             
@@ -231,7 +245,7 @@ async def run_product_scraper(page, page_num):
             await page.get_by_text("Yesterday").click()
             await page.click("span.animate-pulse-subtle")
 
-        await asyncio.sleep(3)
+        await asyncio.sleep(2)
 
         all_results = []
         semaphore = asyncio.Semaphore(5)  # Limit concurrent page processing
@@ -245,9 +259,9 @@ async def run_product_scraper(page, page_num):
                         selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
                         try:
                             await page.click(selector)
-                            await asyncio.sleep(4)
+                            await asyncio.sleep(3)
                         except Exception as e:
-                            logging.error(f"Page {page_num} navigation failed: {e}")
+                            logger.error(f"Page {page_num} navigation failed: {e}")
                             return
 
                     page_results = await extract_product_data(page, page_num)
@@ -267,7 +281,7 @@ async def run_product_scraper(page, page_num):
                             json.dump(page_results, f, ensure_ascii=False, indent=4)
 
                 except Exception as e:
-                    logging.error(f"Error processing page {page_num}: {e}")
+                    logger.error(f"Error processing page {page_num}: {e}")
                     if "TargetClosedError" in str(e):
                         raise  # Re-raise if page was closed
 
@@ -278,19 +292,19 @@ async def run_product_scraper(page, page_num):
         #     await process_page(page_num)
         await process_page(page_num)
 
-        logging.info("Scraping complete!")
-        logging.info(f"Total products scraped: {len(all_results)}")
+        logger.info("Scraping complete!")
+        logger.info(f"Total products scraped: {len(all_results)}")
 
     except Exception as e:
-        logging.error(f"Scraping failed: {e}")
+        logger.error(f"Scraping failed: {e}")
         raise
 
-    logging.info("Scraping complete!")
-    logging.info(f"Total products scraped: {len(all_results)}")
+    logger.info("Scraping complete!")
+    logger.info(f"Total products scraped: {len(all_results)}")
 
     # ant-message-custom-content ant-message-error
     # Your download limit has been reached. Please go to the pricing page to purchase the recharge plan.
 
 async def product_main(page):
-    for page_num in range(1,2):
+    for page_num in range(1,11):
         await run_product_scraper(page, page_num)  # You can loop this later if needed

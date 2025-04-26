@@ -4,21 +4,17 @@ import json
 import os
 import re
 import requests
-import logging
 import random
+from p_logging import get_logger
 
-Shop_dir = "Top_Lives"
-if not os.path.exists(Shop_dir):
-    os.makedirs(Shop_dir)
+Lives_dir = "Top_Lives"
+if not os.path.exists(Lives_dir):
+    os.makedirs(Lives_dir)
 
-log_file_path = "Top_Lives/Top_Lives.log"
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s", 
-    encoding='utf-8',
-    handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()
-    ]
-)
+log_file_path = os.path.join(Lives_dir, "Top_Lives.log")
+logger = get_logger('top_lives_logger', log_file_path)
+
+logger.info("This will go ONLY to Top_Lives.log")
 
 output_dir = "Top_Lives/best_seller_images"
 logo_dir = "Top_Lives/live_content_image"
@@ -37,16 +33,16 @@ async def extract_live_data(page, page_num):
     global image_counter, logo_counter, trend_counter, rank_counter
 
     # Base index starts at 1 for page 1, 51 for page 2, 101 for page 3, etc.
-    base_index = 1 + (page_num - 1) * 10
+    base_index = 1 + (page_num - 1) * 50
     image_counter = logo_counter = trend_counter = rank_counter = base_index
 
     # Continue with the rest of your scraping logic...
-    logging.info(f"Scraping page {page_num}...")
+    logger.info(f"Scraping page {page_num}...")
 
     await page.wait_for_selector(".ant-table-row", timeout=10000)
 
     rows = await page.query_selector_all(".ant-table-row")
-    logging.info(f"Loaded {len(rows)} livestreams")
+    logger.info(f"Loaded {len(rows)} livestreams")
 
     all_lives = []
     headers = {
@@ -72,18 +68,18 @@ async def extract_live_data(page, page_num):
                 try:
                     response = requests.get(logo_url, headers=headers)
                     if response.status_code == 200:
-                        live_image_name = f"live_{rank_counter}_image_content_{logo_counter}.png"
+                        live_image_name = f"live_{row_key}_image_content_{logo_counter}.png"
                         with open(os.path.join(logo_dir, live_image_name), "wb") as f:
                             f.write(response.content)
                         live_content_image = live_image_name
                         # if image_name not in all_product_names:
                         # all_product_names.append(live_content_image)
-                        logging.info(f"Downloaded coverpic for live {live_image_name}")
+                        logger.info(f"Downloaded coverpic for live {live_image_name}")
                         logo_counter += 1
                     else:
-                        logging.info(f"Failed to download image (status {response.status_code})")
+                        logger.info(f"Failed to download image (status {response.status_code})")
                 except Exception as e:
-                    logging.error(f"Error downloading {logo_url}: {e}")
+                    logger.error(f"Error downloading {logo_url}: {e}")
 
         # Live Name
         live_name_el = await row.query_selector("div.line-clamp-2.group-hover\\:text-primary")
@@ -124,8 +120,15 @@ async def extract_live_data(page, page_num):
         image_divs = await row.query_selector_all("div.Component-Image.cover.cover:not(.Layout-VideoCover)")
         # image_divs = await row.query_selector_all('//div[@class="Component-Image cover"]')
         for image_div in image_divs:
-            await image_div.hover()
-            await asyncio.sleep(random.uniform(0.2, 0.5))
+            try:
+                if await image_div.is_visible():
+                    await image_div.scroll_into_view_if_needed()
+                    await image_div.hover()
+                    logger.info(f"Hovered over image div {image_counter}")
+                    await asyncio.sleep(0.2)
+            except Exception as e:
+                logger.error(f"Error scrolling into view for image div {image_counter}: {e}")
+            # Image URL
 
             # Image URL
             style = await image_div.get_attribute("style")
@@ -137,23 +140,24 @@ async def extract_live_data(page, page_num):
                 try:
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
-                        image_name = f"live_product_{rank_counter}_image_{image_counter}.png"
+                        image_name = f"live_product_{product_id}_image_{image_counter}.png"
                         image_path = os.path.join(output_dir, image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
                         # if image_name not in all_product_names:
                         best_seller_images.append(image_name)
                         best_seller_ids.append(product_id)  # ✅ Save product ID
-                        logging.info(f"Saved {image_name} with product ID {product_id}")
-                        # logging.info(f"Saved {image_name}")
+                        logger.info(f"Saved {image_name} with product ID {product_id}")
+                        # logger.info(f"Saved {image_name}")
                         image_counter += 1
                     else:
-                        logging.info(f"Failed to download image (status {response.status_code})")
+                        logger.info(f"Failed to download image (status {response.status_code})")
                 except Exception as e:
-                    logging.error(f"Error downloading {url}: {e}")
+                    logger.error(f"Error downloading {url}: {e}")
 
-        await live_name_el.hover()
-        await asyncio.sleep(random.uniform(0.2, 0.5))
+        await live_profile.hover()
+        # await asyncio.sleep(random.uniform(0.2, 0.5))
+        await asyncio.sleep(0.1)
         # Best Seller Product Names (collected like a shared pool)
         product_elements = await page.query_selector_all("span.line-clamp-2")
         for p in product_elements:
@@ -208,17 +212,17 @@ async def extract_live_data(page, page_num):
 
         # Display results
         for i, live in enumerate(all_lives):
-            logging.info(f"\nLive {i + 1}:")
+            logger.info(f"\nLive {i + 1}:")
             for k, v in live.items():
                 print(f"  {k}: {v if not isinstance(v, list) else ', '.join(v)}")        
     
     return all_lives
 
 async def run_live_scraper(page, page_num):
-    logging.info("Starting scraper...")
+    logger.info("Starting scraper...")
     try:
         if page_num == 1:
-            logging.info("Clicking 'Livestream' link inside #page_header_left...")
+            logger.info("Clicking 'Livestream' link inside #page_header_left...")
             await page.click("#page_header_left >> text=Livestream")
             
             await page.click("span.ant-select-selection-item")
@@ -226,7 +230,7 @@ async def run_live_scraper(page, page_num):
             options = await page.query_selector_all("div.ant-select-item-option-content")
             for option in options:
                 text = await option.inner_text()
-                if "10 / page" in text:
+                if "50 / page" in text:
                     await option.click()
                     break
             
@@ -234,7 +238,7 @@ async def run_live_scraper(page, page_num):
             await page.get_by_text("Yesterday").click()
             await page.click("span.animate-pulse-subtle")
 
-        await asyncio.sleep(3)
+        await asyncio.sleep(2)
         
         all_results = []
         semaphore = asyncio.Semaphore(5)  # Limit concurrent page processing
@@ -247,9 +251,9 @@ async def run_live_scraper(page, page_num):
                         selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
                         try:
                             await page.click(selector)
-                            await asyncio.sleep(4)
+                            await asyncio.sleep(3)
                         except Exception as e:
-                            logging.error(f"Page {page_num} navigation failed: {e}")
+                            logger.error(f"Page {page_num} navigation failed: {e}")
                             return
 
                     page_results = await extract_live_data(page, page_num)
@@ -273,22 +277,22 @@ async def run_live_scraper(page, page_num):
                             json.dump(page_results, f, ensure_ascii=False, indent=4)
 
                 except Exception as e:
-                    logging.error(f"Error processing page {page_num}: {e}")
+                    logger.error(f"Error processing page {page_num}: {e}")
                     if "TargetClosedError" in str(e):
                         raise  # Re-raise if page was closed
 
         await process_page(page_num)
 
-        logging.info("Scraping complete!")
-        logging.info(f"Total lives scraped: {len(all_results)}")
+        logger.info("Scraping complete!")
+        logger.info(f"Total lives scraped: {len(all_results)}")
 
     except Exception as e:
-        logging.error(f"Scraping failed: {e}")
+        logger.error(f"Scraping failed: {e}")
         raise
 
-    logging.info("Scraping complete!")
-    logging.info(f"Total lives scraped: {len(all_results)}")
+    logger.info("Scraping complete!")
+    logger.info(f"Total lives scraped: {len(all_results)}")
 
 async def live_main(page):
-    for page_num in range(1,2):
+    for page_num in range(1,11):
         await run_live_scraper(page, page_num)  # You can loop this later if needed

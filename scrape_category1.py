@@ -4,41 +4,68 @@ import json
 import os
 import re
 import requests
-import logging
 import random
+from p_logging import get_logger
 
-Shop_dir = "Top_Categories"
-if not os.path.exists(Shop_dir):
-    os.makedirs(Shop_dir)
+Category_dir = "Top_Categories"
+if not os.path.exists(Category_dir):
+    os.makedirs(Category_dir) 
+
+log_file_path = os.path.join(Category_dir, "Top_Categories.log")
+logger = get_logger('top_categories_logger', log_file_path)
+
+logger.info("This will go ONLY to Top_Categories.log")
 
 log_file_path = "Top_Categories/Top_Categories.log"
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s", handlers=[
-    logging.FileHandler(log_file_path),
-    logging.StreamHandler()
-])
+logger = logger.getLogger()
+logger.setLevel(logger.INFO)
+
+# Avoid adding multiple handlers if script is run multiple times
+if not logger.handlers:
+    # File handler
+    file_handler = logger.FileHandler(log_file_path, encoding='utf-8')
+    file_handler.setLevel(logger.INFO)
+    file_formatter = logger.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+    file_handler.setFormatter(file_formatter)
+    logger.addHandler(file_handler)
+
+    # Stream handler (console)
+    stream_handler = logger.StreamHandler()
+    stream_handler.setLevel(logger.INFO)
+    stream_handler.setFormatter(file_formatter)
+    logger.addHandler(stream_handler)
 
 output_dir = "Top_Categories/best_selling_products_images"
-logo_dir = "Top_Categories/category_logo"
+# logo_dir = "Top_Categories/category_logo"
 trend_dir = "Top_Categories/trend_images"
 os.makedirs(output_dir, exist_ok=True)
-os.makedirs(logo_dir, exist_ok=True)
+# os.makedirs(logo_dir, exist_ok=True)
 os.makedirs(trend_dir, exist_ok=True)
+
+# GLOBALS TO TRACK COUNTERS ACROSS PAGES
+image_counter = 1
+logo_counter = 1
+trend_counter = 1
+rank_counter = 1
 
 async def extract_category_data(page, page_num):
     global image_counter, logo_counter, trend_counter
 
     # Base index starts at 1 for page 1, 51 for page 2, 101 for page 3, etc.
+    global image_counter, logo_counter, trend_counter, rank_counter
+
+    # Base index starts at 1 for page 1, 51 for page 2, 101 for page 3, etc.
     base_index = 1 + (page_num - 1) * 10
-    image_counter = logo_counter = trend_counter = base_index
+    image_counter = logo_counter = trend_counter = rank_counter = base_index
 
     # Continue with the rest of your scraping logic...
-    logging.info(f"Scraping page {page_num}...")
+    logger.info(f"Scraping page {page_num}...")
 
     await page.wait_for_selector(".ant-table-row", timeout=10000)
 
     rows = await page.query_selector_all(".ant-table-row")
-    logging.info(f"Loaded {len(rows)} categories")
+    logger.info(f"Loaded {len(rows)} categories")
 
     all_categories = []
     headers = {
@@ -72,11 +99,11 @@ async def extract_category_data(page, page_num):
         revenue_trend_filename = "N/A"
         if len(td_elements) > 5:
             try:
-                revenue_trend_filename = f"revenue_trend_{trend_counter}.png"
+                revenue_trend_filename = f"revenue_trend_{row_key}.png"
                 await td_elements[5].screenshot(path=os.path.join(trend_dir, revenue_trend_filename))
-                logging.info(f"Screenshot saved for revenue trend: {revenue_trend_filename}")
+                logger.info(f"Screenshot saved for revenue trend: {revenue_trend_filename}")
             except Exception as e:
-                logging.error(f"Error capturing screenshot for revenue trend: {e}")
+                logger.error(f"Error capturing screenshot for revenue trend: {e}")
 
         # Best Seller Images
         best_seller_ids = []
@@ -91,11 +118,12 @@ async def extract_category_data(page, page_num):
                 if await image_div.is_visible():
                     await image_div.scroll_into_view_if_needed()
                     await image_div.hover()
-                    await asyncio.sleep(random.uniform(0.2, 0.5))
-                    logging.info(f"Hovered over image div {image_counter}")
                     await asyncio.sleep(0.2)
+                    # await asyncio.sleep(random.uniform(0.2, 0.5))
+                    logger.info(f"Hovered over image div {image_counter}")
+                    # await asyncio.sleep(0.2)
             except Exception as e:
-                logging.error(f"Error scrolling into view for image div {image_counter}: {e}")
+                logger.error(f"Error scrolling into view for image div {image_counter}: {e}")
 
             # Image URL
             style = await image_div.get_attribute("style")
@@ -107,21 +135,22 @@ async def extract_category_data(page, page_num):
                 try:
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
-                        image_name = f"shop_{index+1}_image_{image_counter}.png"
+                        image_name = f"shop_{product_id}_image_{image_counter}.png"
                         image_path = os.path.join(output_dir, image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
                         best_seller_images.append(image_name)
                         best_seller_ids.append(product_id)  # ✅ Save product ID
-                        logging.info(f"Saved {image_name} with product ID {product_id}")
-                        # logging.info(f"Saved {image_name}")
+                        logger.info(f"Saved {image_name} with product ID {product_id}")
+                        # logger.info(f"Saved {image_name}")
                         image_counter += 1
                     else:
-                        logging.info(f"Failed to download image (status {response.status_code})")
+                        logger.info(f"Failed to download image (status {response.status_code})")
                 except Exception as e:
-                    logging.error(f"Error downloading {url}: {e}")
+                    logger.error(f"Error downloading {url}: {e}")
         await rev_el.hover()
-        await asyncio.sleep(0.1)
+        # await asyncio.sleep(0.1)
+        await asyncio.sleep(0.2)
         # Best Seller Product Names (collected like a shared pool)
         product_elements = await page.query_selector_all("span.line-clamp-2")
         all_product_names = []
@@ -141,7 +170,7 @@ async def extract_category_data(page, page_num):
 
         category_data = {
             "Row Key": row_key,
-            "Rank": index + 1,
+            "Rank": rank_counter,
             "Category Name": category_name,
             "Best Seller IDs": best_seller_ids,
             "Best Sellers": [],  # filled later
@@ -159,6 +188,7 @@ async def extract_category_data(page, page_num):
 
         all_categories.append(category_data)
         trend_counter += 1
+        rank_counter += 1
 
         product_idx = 0
         for prod in all_categories:
@@ -176,17 +206,17 @@ async def extract_category_data(page, page_num):
         
         # Display results
         for i, shop in enumerate(all_categories):
-            logging.info(f"\nCategory {i + 1}:")
+            logger.info(f"\nCategory {i + 1}:")
             for k, v in shop.items():
                 print(f"  {k}: {v if not isinstance(v, list) else ', '.join(v)}")        
     
     return all_categories
 
 async def run_category_scraper(page, page_num):
-    logging.info("Starting scraper...")
+    logger.info("Starting scraper...")
     try:
         if page_num == 1:
-            logging.info("Clicking 'Category' link inside #page_header_left...")
+            logger.info("Clicking 'Category' link inside #page_header_left...")
             await page.click("#page_header_left >> text=Category")
 
             await page.click("span.ant-select-selection-item")
@@ -202,7 +232,7 @@ async def run_category_scraper(page, page_num):
             await page.get_by_text("Last 7 Days").click()
             await page.click("span.animate-pulse-subtle")
 
-        await asyncio.sleep(3)
+        await asyncio.sleep(2)
         
         all_results = []
         semaphore = asyncio.Semaphore(5)  # Limit concurrent page processing
@@ -215,9 +245,9 @@ async def run_category_scraper(page, page_num):
                         selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
                         try:
                             await page.click(selector)
-                            await asyncio.sleep(4)
+                            await asyncio.sleep(3)
                         except Exception as e:
-                            logging.error(f"Page {page_num} navigation failed: {e}")
+                            logger.error(f"Page {page_num} navigation failed: {e}")
                             return
 
                     page_results = await extract_category_data(page, page_num)
@@ -241,7 +271,7 @@ async def run_category_scraper(page, page_num):
                             json.dump(page_results, f, ensure_ascii=False, indent=4)
 
                 except Exception as e:
-                    logging.error(f"Error processing page {page_num}: {e}")
+                    logger.error(f"Error processing page {page_num}: {e}")
                     if "TargetClosedError" in str(e):
                         raise  # Re-raise if page was closed
 
@@ -252,15 +282,15 @@ async def run_category_scraper(page, page_num):
         #     await process_page(page_num)
         await process_page(page_num)
 
-        logging.info("Scraping complete!")
-        logging.info(f"Total categories scraped: {len(all_results)}")
+        logger.info("Scraping complete!")
+        logger.info(f"Total categories scraped: {len(all_results)}")
 
     except Exception as e:
-        logging.error(f"Scraping failed: {e}")
+        logger.error(f"Scraping failed: {e}")
         raise
 
-    logging.info("Scraping complete!")
-    logging.info(f"Total categories scraped: {len(all_results)}")
+    logger.info("Scraping complete!")
+    logger.info(f"Total categories scraped: {len(all_results)}")
 
 async def category_main(page):
     for page_num in range(1,2):

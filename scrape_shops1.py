@@ -5,22 +5,17 @@ import json
 import os
 import re
 import requests
-import logging
 import random
+from p_logging import get_logger
 
 Shop_dir = "Top_Shops"
 if not os.path.exists(Shop_dir):
     os.makedirs(Shop_dir)
 
-log_file_path = "Top_Shops/Top_Shops.log"
+log_file_path = os.path.join(Shop_dir, "Top_Shops.log")
+logger = get_logger('top_shops_logger', log_file_path)
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s", 
-    encoding='utf-8',
-    handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()
-    ]
-)
+logger.info("This will go ONLY to Top_Shops.log")
 
 output_dir = "Top_Shops/best_selling_products_images"
 logo_dir = "Top_Shops/shop_logo"
@@ -41,16 +36,16 @@ async def extract_shop_data(page, page_num):
     global image_counter, logo_counter, trend_counter, rank_counter
 
     # Base index starts at 1 for page 1, 51 for page 2, 101 for page 3, etc.
-    base_index = 1 + (page_num - 1) * 10
+    base_index = 1 + (page_num - 1) * 50
     image_counter = logo_counter = trend_counter = rank_counter = base_index
 
     # Continue with the rest of your scraping logic...
-    logging.info(f"Scraping page {page_num}...")
+    logger.info(f"Scraping page {page_num}...")
 
     await page.wait_for_selector(".ant-table-row.ant-table-row-level-0", timeout=10000)
 
     rows = await page.query_selector_all(".ant-table-row.ant-table-row-level-0")
-    logging.info(f"Loaded {len(rows)} products")
+    logger.info(f"Loaded {len(rows)} products")
 
     all_shops = []
     # best_seller_images = []
@@ -61,7 +56,7 @@ async def extract_shop_data(page, page_num):
         "Referer": "https://www.kalodata.com"
     }
     image_divs = await page.query_selector_all("div.Component-Image.cover.cover")
-    logging.info("Image divs found: %d", len(image_divs))
+    logger.info("Image divs found: %d", len(image_divs))
     logo_el = None
     for index, row in enumerate(rows):
         # ✅ Shop Logo
@@ -76,15 +71,15 @@ async def extract_shop_data(page, page_num):
                 try:
                     response = requests.get(logo_url, headers=headers)
                     if response.status_code == 200:
-                        shop_logo_filename = f"shop_logo_{rank_counter}.png"
+                        shop_logo_filename = f"shop_logo_{row_key}.png"
                         with open(os.path.join(logo_dir, shop_logo_filename), "wb") as f:
                             f.write(response.content)
-                        logging.info(f"Saved shop {index + 1} logo as {shop_logo_filename}")
+                        logger.info(f"Saved shop {index + 1} logo as {shop_logo_filename}")
                         logo_counter += 1
                     else:
-                        logging.error(f"Failed to download shop logo (status {response.status_code})")
+                        logger.error(f"Failed to download shop logo (status {response.status_code})")
                 except Exception as e:
-                    logging.error(f"Error downloading logo {logo_url}: {e}")
+                    logger.error(f"Error downloading logo {logo_url}: {e}")
 
         # Shop Name
         shop_name_el = await row.query_selector("div.line-clamp-1:not(.text-base-999)")
@@ -108,11 +103,11 @@ async def extract_shop_data(page, page_num):
         revenue_trend_filename = "N/A"
         if len(td_elements) > 4:
             try:
-                revenue_trend_filename = f"revenue_trend_{rank_counter}.png"
+                revenue_trend_filename = f"revenue_trend_{row_key}.png"
                 await td_elements[4].screenshot(path=os.path.join(trend_dir, revenue_trend_filename))
-                logging.info(f"Screenshot saved for revenue trend: {revenue_trend_filename}")
+                logger.info(f"Screenshot saved for revenue trend: {revenue_trend_filename}")
             except Exception as e:
-                logging.error(f"Error capturing screenshot for revenue trend: {e}")
+                logger.error(f"Error capturing screenshot for revenue trend: {e}")
 
         # Best Seller Images
         best_seller_ids = []
@@ -122,16 +117,16 @@ async def extract_shop_data(page, page_num):
         price_elements = ""
         all_product_prices = []
         image_divs = await row.query_selector_all("div.Component-Image.cover.cover")
-        # logging.info("Image divs found: %d", len(image_divs))
+        # logger.info("Image divs found: %d", len(image_divs))
         for image_div in image_divs:
             try:
                 if await image_div.is_visible():
                     await image_div.scroll_into_view_if_needed()
                     await image_div.hover()
-                    logging.info(f"Hovered over image div {image_counter}")
+                    logger.info(f"Hovered over image div {image_counter}")
                     await asyncio.sleep(random.uniform(0.2, 0.5))
             except Exception as e:
-                logging.error(f"Error scrolling into view for image div {image_counter}: {e}")
+                logger.error(f"Error scrolling into view for image div {image_counter}: {e}")
             # Image URL
             style = await image_div.get_attribute("style")
             match = re.search(r'url\(["\']?(.*?)["\']?\)', style)
@@ -140,30 +135,30 @@ async def extract_shop_data(page, page_num):
                 id_match = re.search(r'tiktok\.product/(\d+)/', url)
                 product_id = id_match.group(1) if id_match else None
 
-                logging.info(f"Extracted URL: {url}")
-                logging.info(f"Extracted Product ID: {product_id}")
+                logger.info(f"Extracted URL: {url}")
+                logger.info(f"Extracted Product ID: {product_id}")
                 try:
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
-                        image_name = f"shop_{rank_counter}_image_{image_counter}.png"
+                        image_name = f"shop_{product_id}_image_{image_counter}.png"
                         image_path = os.path.join(output_dir, image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
                         best_seller_images.append(image_name)
                         best_seller_ids.append(product_id)  # ✅ Save product ID
-                        logging.info(f"Saved {image_name} with product ID {product_id}")
-                        # logging.info(f"Saved {image_name}")
+                        logger.info(f"Saved {image_name} with product ID {product_id}")
+                        # logger.info(f"Saved {image_name}")
                         image_counter += 1
                     else:
-                        logging.info(f"Failed to download image (status {response.status_code})")
+                        logger.info(f"Failed to download image (status {response.status_code})")
                 except Exception as e:
-                    logging.error(f"Error downloading {url}: {e}")
+                    logger.error(f"Error downloading {url}: {e}")
         await logo_el.hover()
         await asyncio.sleep(random.uniform(0.2, 0.5))
         # Best Seller Product Names (collected like a shared pool)
         # all_product_names = []
         
-        logging.info(f"Product Elements: {len(product_elements)}")
+        logger.info(f"Product Elements: {len(product_elements)}")
         product_elements = await page.query_selector_all("span.line-clamp-2")
         price_elements = await page.query_selector_all("div.text-\\[16px\\].min-w-\\[80px\\].h-\\[20px\\].font-medium.bg-white")
         all_product_names = []
@@ -227,17 +222,17 @@ async def extract_shop_data(page, page_num):
 
         # Display results
         for i, shop in enumerate(all_shops):
-            logging.info(f"\nShop {i + 1}:")
+            logger.info(f"\nShop {i + 1}:")
             for k, v in shop.items():
                 print(f"  {k}: {v if not isinstance(v, list) else ', '.join(v)}")        
     
     return all_shops
 
 async def run_shop_scraper(page, page_num):
-    logging.info("Starting scraper...")
+    logger.info("Starting scraper...")
     try:
         if page_num == 1:
-            logging.info("Clicking 'Shop' link inside #page_header_left...")
+            logger.info("Clicking 'Shop' link inside #page_header_left...")
             await page.click("#page_header_left >> text=Shop")
 
             await page.click("span.ant-select-selection-item")
@@ -245,7 +240,7 @@ async def run_shop_scraper(page, page_num):
             options = await page.query_selector_all("div.ant-select-item-option-content")
             for option in options:
                 text = await option.inner_text()
-                if "10 / page" in text:
+                if "50 / page" in text:
                     await option.click()
                     break
 
@@ -253,7 +248,7 @@ async def run_shop_scraper(page, page_num):
             await page.get_by_text("Yesterday").click()
             await page.click("span.animate-pulse-subtle")
 
-        await asyncio.sleep(3)
+        await asyncio.sleep(2)
 
         all_results = []
         semaphore = asyncio.Semaphore(5)  # Limit concurrent page processing
@@ -267,9 +262,9 @@ async def run_shop_scraper(page, page_num):
                         selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
                         try:
                             await page.click(selector)
-                            await asyncio.sleep(4)
+                            await asyncio.sleep(3)
                         except Exception as e:
-                            logging.error(f"Page {page_num} navigation failed: {e}")
+                            logger.error(f"Page {page_num} navigation failed: {e}")
                             return
 
                     page_results = await extract_shop_data(page, page_num)
@@ -297,7 +292,7 @@ async def run_shop_scraper(page, page_num):
                             json.dump(page_results, f, ensure_ascii=False, indent=4)
 
                 except Exception as e:
-                    logging.error(f"Error processing page {page_num}: {e}")
+                    logger.error(f"Error processing page {page_num}: {e}")
                     if "TargetClosedError" in str(e):
                         raise  # Re-raise if page was closed
 
@@ -308,18 +303,18 @@ async def run_shop_scraper(page, page_num):
         #     await process_page(page_num)
         await process_page(page_num)
 
-        logging.info("Scraping complete!")
-        logging.info(f"Total products scraped: {len(all_results)}")
+        logger.info("Scraping complete!")
+        logger.info(f"Total products scraped: {len(all_results)}")
 
     except Exception as e:
-        logging.error(f"Scraping failed: {e}")
+        logger.error(f"Scraping failed: {e}")
         raise
 
-    logging.info("Scraping complete!")
-    logging.info(f"Total products scraped: {len(all_results)}")
+    logger.info("Scraping complete!")
+    logger.info(f"Total products scraped: {len(all_results)}")
 
 
 async def shop_main(page):
-    for page_num in range(1,2):
+    for page_num in range(1,11):
         await run_shop_scraper(page, page_num)  # You can loop this later if needed
 
