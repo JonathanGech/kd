@@ -38,7 +38,7 @@ async def extract_video_data(page, page_num):
     global image_counter, logo_counter, trend_counter, rank_counter
 
     # Base index starts at 1 for page 1, 51 for page 2, 101 for page 3, etc.
-    base_index = 1 + (page_num - 1) * 50
+    base_index = 1 + (page_num - 1) * 10
     image_counter = logo_counter = trend_counter = rank_counter = base_index
 
     # Continue with the rest of your scraping logic...
@@ -58,26 +58,27 @@ async def extract_video_data(page, page_num):
 
     for index, row in enumerate(rows):
         # ✅ product Logo
-        row_key = await row.get_attribute("data-row-key") or "N/A"
+        # row_key = await row.get_attribute("data-row-key") or "N/A"
+        row_key = ""
         product_el = await row.query_selector("div.Component-Image.cover.cover")
         product_image_filename = "N/A"
-        if product_el:
-            style = await product_el.get_attribute("style")
-            match = re.search(r'url\(["\']?(.*?)["\']?\)', style)
-            if match:
-                logo_url = match.group(1)
-                try:
-                    response = requests.get(logo_url, headers=headers)
-                    if response.status_code == 200:
-                        product_image_filename = f"product_logo_{row_key}.png"
-                        with open(os.path.join(video_product_dir, product_image_filename), "wb") as f:
-                            f.write(response.content)
-                        logger.info(f"Saved product {product_image_filename}")
-                        # logo_counter += 1
-                    else:
-                        logger.info(f"Failed to download product image (status {response.status_code})")
-                except Exception as e:
-                    logger.error(f"Error downloading product {logo_url}: {e}")
+        # if product_el:
+        #     style = await product_el.get_attribute("style")
+        #     match = re.search(r'url\(["\']?(.*?)["\']?\)', style)
+        #     if match:
+        #         logo_url = match.group(1)
+        #         try:
+        #             response = requests.get(logo_url, headers=headers)
+        #             if response.status_code == 200:
+        #                 product_image_filename = f"product_logo_{row_key}.png"
+        #                 with open(os.path.join(video_product_dir, product_image_filename), "wb") as f:
+        #                     f.write(response.content)
+        #                 logger.info(f"Saved product {product_image_filename}")
+        #                 # logo_counter += 1
+        #             else:
+        #                 logger.info(f"Failed to download product image (status {response.status_code})")
+        #         except Exception as e:
+        #             logger.error(f"Error downloading product {logo_url}: {e}")
 
         # product Profile
         video_name_el = await row.query_selector("div.group-hover\\:text-primary")
@@ -92,38 +93,80 @@ async def extract_video_data(page, page_num):
         all_product_names = []
         product_price = None
 
-        # For video
+        # For Video Images
         image_divs = await row.query_selector_all("div.Component-Image.Layout-VideoCover.poster.Layout-VideoCover.poster")
         video_content_image = None
+        video_content = None
 
         for image_div in image_divs:
-            # await image_div.hover()
+            await image_div.hover()
             # await asyncio.sleep(3)
             # await asyncio.sleep(random.uniform(0.2, 0.5))
             await asyncio.sleep(.2)
 
-            image_name = f"product_{row_key}_image_{image_counter}.png"
-            image_path = os.path.join(output_dir, image_name)
+            vid_image_name = ""
 
             # Save thumbnail image
             style = await image_div.get_attribute("style")
             match = re.search(r'url\(["\']?(.*?)["\']?\)', style)
             if match:
-                url = match.group(1)
+                vid_url = match.group(1)
+                id_match = re.search(r'tiktok\.(?:product|video)/(\d+)/', vid_url)
+                row_key = id_match.group(1) if id_match else None
                 try:
-                    response = requests.get(url, headers=headers)
+                    response = requests.get(vid_url, headers=headers)
                     if response.status_code == 200:
+                        vid_image_name = f"video_{row_key}_image_{image_counter}.png"
+                        image_path = os.path.join(output_dir, vid_image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
-                        video_content_image = image_name
-                        if image_name not in all_product_names:
-                            all_product_names.append(image_name)
-                        logger.info(f"Saved {image_name}")
+                        video_content_image = vid_image_name
+                        # if image_name not in all_product_names:
+                        all_product_names.append(vid_image_name)
+                        logger.info(f"Saved {vid_image_name}")
                         image_counter += 1
                     else:
                         logger.info(f"Failed to download image (status {response.status_code})")
                 except Exception as e:
-                    logger.error(f"Error downloading {url}: {e}")
+                    logger.error(f"Error downloading {vid_url}: {e}")
+
+        # For Video Contents
+            try:
+                await image_div.click()
+                await page.wait_for_selector("#videoplayer video", timeout=10000)  # Use ID selector
+
+                video_element = await page.query_selector("#videoplayer video")
+                video_url = await video_element.get_attribute("src") if video_element else None
+
+                if video_url:
+                    video_filename = f"video_{row_key}.mp4"
+                    video_path = os.path.join(video_content_dir, video_filename)
+
+                    response = requests.get(video_url, headers=headers)
+                    if response.status_code == 200:
+                        with open(video_path, "wb") as f:
+                            f.write(response.content)
+                        video_content = video_filename
+                        logger.info(f"Downloaded video {video_filename}")
+                    else:
+                        logger.warning(f"Video URL responded with status {response.status_code}")
+                else:
+                    logger.warning("No video URL found in #videoplayer")
+            except Exception as e:
+                logger.error(f"Error during video extraction from image_div: {e}")
+            finally:
+                try:
+                    close_button = await page.query_selector(
+                        "//div[contains(@class, 'w-[40px]') and contains(@class, 'h-[40px]') "
+                        "and contains(@class, 'rounded-full') and contains(@class, 'bg-[#999]')]"
+                    )
+                    if close_button:
+                        await close_button.click()
+                        await asyncio.sleep(0.2)
+                    else:
+                        logger.warning("Close button not found after video download or failure")
+                except Exception as e:
+                    logger.error(f"Error trying to close the video modal: {e}")
 
             # Save video from file dialog
             # try:
@@ -176,13 +219,30 @@ async def extract_video_data(page, page_num):
                 logger.info(f"Screenshot saved for views trend: {views_trend_filename}")
             except Exception as e:
                 logger.error(f"Error capturing screenshot for views trend: {e}")
-
+       
+        # if product_el:
+        #     style = await product_el.get_attribute("style")
+        #     match = re.search(r'url\(["\']?(.*?)["\']?\)', style)
+        #     if match:
+        #         logo_url = match.group(1)
+        #         try:
+        #             response = requests.get(logo_url, headers=headers)
+        #             if response.status_code == 200:
+        #                 product_image_filename = f"product_logo_{row_key}.png"
+        #                 with open(os.path.join(video_product_dir, product_image_filename), "wb") as f:
+        #                     f.write(response.content)
+        #                 logger.info(f"Saved product {product_image_filename}")
+        #                 # logo_counter += 1
+        #             else:
+        #                 logger.info(f"Failed to download product image (status {response.status_code})")
+        #         except Exception as e:
+        #             logger.error(f"Error downloading product {logo_url}: {e}")
     
         prod_image_div = await row.query_selector("div.Component-Image.cover.cover")
         best_seller_ids = []
         if prod_image_div:
-            # await prod_image_div.hover()
-            # await asyncio.sleep(.2)
+            await prod_image_div.hover()
+            await asyncio.sleep(.2)
 
                 # Image URL
             style = await prod_image_div.get_attribute("style")
@@ -197,8 +257,8 @@ async def extract_video_data(page, page_num):
                 try:
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
-                        image_name = f"product_{product_id}_image_{image_counter}.png"
-                        image_path = os.path.join(output_dir, image_name)
+                        image_name = f"product_{product_id}.png"
+                        image_path = os.path.join(video_product_dir, image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
                         product_image_filename = image_name
@@ -240,7 +300,8 @@ async def extract_video_data(page, page_num):
         product_data = {
             "Row Key": row_key,
             "Rank": rank_counter,
-            "Video Content": video_content_image,
+            "Video Content": video_content,
+            "Video Content Image": video_content_image,
             "Video Name": video_name,
             "Video Duration": v_duration_text,
             "Best Seller IDs": best_seller_ids,
@@ -283,7 +344,7 @@ async def run_video_scraper(page, page_num):
             options = await page.query_selector_all("div.ant-select-item-option-content")
             for option in options:
                 text = await option.inner_text()
-                if "50 / page" in text:
+                if "10 / page" in text:
                     await option.click()
                     break
             await page.click("div.h-\\[22px\\].hover\\:bg-\\[rgb\\(238\\,246\\,253\\)\\].rounded-\\[4px\\].pl-\\[4px\\].flex.items-center.justify-between.text-\\[13px\\].whitespace-nowrap")
@@ -343,5 +404,5 @@ async def run_video_scraper(page, page_num):
     logger.info(f"Total products scraped: {len(all_results)}")
 
 async def video_main(page):
-    for page_num in range(1,11):
+    for page_num in range(1,2):
         await run_video_scraper(page, page_num)  # You can loop this later if needed

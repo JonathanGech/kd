@@ -1,0 +1,189 @@
+2025-05-01 21:02:01,057 - INFO - This will go ONLY to Top_Videos.log
+2025-05-01 21:02:09,321 - INFO - Starting scraper...
+2025-05-01 21:02:09,323 - INFO - Clicking 'Video' link inside #page_header_left...
+2025-05-01 21:02:21,309 - INFO - Scraping page 1...
+2025-05-01 21:02:21,340 - INFO - Loaded 10 videos
+2025-05-01 21:02:22,815 - INFO - Saved video_7496616707151285550_image_1.png
+2025-05-01 21:02:29,940 - INFO - Downloaded video video_7496616707151285550.mp4
+2025-05-01 21:02:30,419 - INFO - Screenshot saved for revenue trend: revenue_trend_7496616707151285550.png
+2025-05-01 21:02:30,563 - INFO - Screenshot saved for views trend: views_trend_7496616707151285550.png
+2025-05-01 21:02:30,950 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1730890193353609874/cover.png
+2025-05-01 21:02:30,951 - INFO - Extracted Product ID: 1730890193353609874
+2025-05-01 21:02:31,077 - INFO - Saved product_1730890193353609874.png with product ID 1730890193353609874
+2025-05-01 21:02:31,250 - INFO - 
+Video 1:
+2025-05-01 21:02:31,746 - INFO - Saved video_7498114465133628714_image_3.png
+2025-05-01 21:02:32,748 - INFO - Downloaded video video_7498114465133628714.mp4
+2025-05-01 21:02:33,220 - INFO - Screenshot saved for revenue trend: revenue_trend_7498114465133628714.png
+2025-05-01 21:02:33,331 - INFO - Screenshot saved for views trend: views_trend_7498114465133628714.png
+2025-05-01 21:02:33,708 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1731012068101624775/cover.png
+2025-05-01 21:02:33,714 - INFO - Extracted Product ID: 1731012068101624775
+2025-05-01 21:02:33,872 - INFO - Saved product_1731012068101624775.png with product ID 1731012068101624775
+2025-05-01 21:02:34,062 - INFO - 
+Video 1:
+2025-05-01 21:02:34,064 - INFO - 
+Video 2:
+2025-05-01 21:02:34,519 - INFO - Saved video_7498151327529258286_image_5.png
+2025-05-01 21:02:35,585 - INFO - Downloaded video video_7498151327529258286.mp4
+2025-05-01 21:02:36,006 - INFO - Screenshot saved for revenue trend: revenue_trend_7498151327529258286.png
+2025-05-01 21:02:36,119 - INFO - Screenshot saved for views trend: views_trend_7498151327529258286.png
+2025-05-01 21:02:36,439 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1730145765796646939/cover.png
+2025-05-01 21:02:36,440 - INFO - Extracted Product ID: 1730145765796646939
+2025-05-01 21:02:36,566 - INFO - Saved product_1730145765796646939.png with product ID 1730145765796646939
+2025-05-01 21:02:36,748 - INFO - 
+Video 1:
+2025-05-01 21:02:36,750 - INFO - 
+Video 2:
+2025-05-01 21:02:36,751 - INFO - 
+Video 3:
+2025-05-01 21:02:37,169 - INFO - Saved video_7492106570566782250_image_7.png
+2025-05-01 21:02:39,230 - INFO - Downloaded video video_7492106570566782250.mp4
+2025-05-01 21:02:39,658 - INFO - Screenshot saved for revenue trend: revenue_trend_7492106570566782250.png
+2025-05-01 21:02:39,797 - INFO - Screenshot saved for views trend: views_trend_7492106570566782250.png
+2025-05-01 21:02:40,121 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1730890193353609874/cover.png
+2025-05-01 21:02:40,121 - INFO - Extracted Product ID: 1730890193353609874
+2025-05-01 21:02:40,244 - INFO - Saved product_1730890193353609874.png with product ID 1730890193353609874
+2025-05-01 21:02:40,428 - INFO - 
+Video 1:
+2025-05-01 21:02:40,430 - INFO - 
+Video 2:
+2025-05-01 21:02:40,434 - INFO - 
+Video 3:
+2025-05-01 21:02:40,438 - INFO - 
+Video 4:
+2025-05-01 21:02:40,859 - INFO - Saved video_7498538728533658910_image_9.png
+2025-05-01 21:02:42,634 - INFO - Downloaded video video_7498538728533658910.mp4
+2025-05-01 21:02:43,081 - INFO - Screenshot saved for revenue trend: revenue_trend_7498538728533658910.png
+2025-05-01 21:02:43,223 - INFO - Screenshot saved for views trend: views_trend_7498538728533658910.png
+2025-05-01 21:02:43,549 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1731051991576711924/cover.png
+2025-05-01 21:02:43,551 - INFO - Extracted Product ID: 1731051991576711924
+2025-05-01 21:02:43,671 - INFO - Saved product_1731051991576711924.png with product ID 1731051991576711924
+2025-05-01 21:02:43,873 - INFO - 
+Video 1:
+2025-05-01 21:02:43,876 - INFO - 
+Video 2:
+2025-05-01 21:02:43,878 - INFO - 
+Video 3:
+2025-05-01 21:02:43,883 - INFO - 
+Video 4:
+2025-05-01 21:02:43,889 - INFO - 
+Video 5:
+2025-05-01 21:02:44,455 - INFO - Saved video_7498463851189488926_image_11.png
+2025-05-01 21:02:45,232 - INFO - Downloaded video video_7498463851189488926.mp4
+2025-05-01 21:02:45,718 - INFO - Screenshot saved for revenue trend: revenue_trend_7498463851189488926.png
+2025-05-01 21:02:45,828 - INFO - Screenshot saved for views trend: views_trend_7498463851189488926.png
+2025-05-01 21:02:46,149 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1729464033034539782/cover.png
+2025-05-01 21:02:46,150 - INFO - Extracted Product ID: 1729464033034539782
+2025-05-01 21:02:46,279 - INFO - Saved product_1729464033034539782.png with product ID 1729464033034539782
+2025-05-01 21:02:46,466 - INFO - 
+Video 1:
+2025-05-01 21:02:46,468 - INFO - 
+Video 2:
+2025-05-01 21:02:46,470 - INFO - 
+Video 3:
+2025-05-01 21:02:46,472 - INFO - 
+Video 4:
+2025-05-01 21:02:46,475 - INFO - 
+Video 5:
+2025-05-01 21:02:46,476 - INFO - 
+Video 6:
+2025-05-01 21:02:46,918 - INFO - Saved video_7494844097887456554_image_13.png
+2025-05-01 21:02:49,985 - INFO - Downloaded video video_7494844097887456554.mp4
+2025-05-01 21:02:50,440 - INFO - Screenshot saved for revenue trend: revenue_trend_7494844097887456554.png
+2025-05-01 21:02:50,538 - INFO - Screenshot saved for views trend: views_trend_7494844097887456554.png
+2025-05-01 21:02:50,899 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1729447692519837778/cover.png
+2025-05-01 21:02:50,900 - INFO - Extracted Product ID: 1729447692519837778
+2025-05-01 21:02:51,095 - INFO - Saved product_1729447692519837778.png with product ID 1729447692519837778
+2025-05-01 21:02:51,311 - INFO - 
+Video 1:
+2025-05-01 21:02:51,313 - INFO - 
+Video 2:
+2025-05-01 21:02:51,315 - INFO - 
+Video 3:
+2025-05-01 21:02:51,317 - INFO - 
+Video 4:
+2025-05-01 21:02:51,319 - INFO - 
+Video 5:
+2025-05-01 21:02:51,321 - INFO - 
+Video 6:
+2025-05-01 21:02:51,323 - INFO - 
+Video 7:
+2025-05-01 21:02:51,774 - INFO - Saved video_7467962961743842606_image_15.png
+2025-05-01 21:02:52,538 - INFO - Downloaded video video_7467962961743842606.mp4
+2025-05-01 21:02:53,052 - INFO - Screenshot saved for revenue trend: revenue_trend_7467962961743842606.png
+2025-05-01 21:02:53,152 - INFO - Screenshot saved for views trend: views_trend_7467962961743842606.png
+2025-05-01 21:02:53,469 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1729483130470699964/cover.png
+2025-05-01 21:02:53,470 - INFO - Extracted Product ID: 1729483130470699964
+2025-05-01 21:02:53,630 - INFO - Saved product_1729483130470699964.png with product ID 1729483130470699964
+2025-05-01 21:02:53,816 - INFO - 
+Video 1:
+2025-05-01 21:02:53,819 - INFO - 
+Video 2:
+2025-05-01 21:02:53,823 - INFO - 
+Video 3:
+2025-05-01 21:02:53,833 - INFO - 
+Video 4:
+2025-05-01 21:02:53,835 - INFO - 
+Video 5:
+2025-05-01 21:02:53,838 - INFO - 
+Video 6:
+2025-05-01 21:02:53,840 - INFO - 
+Video 7:
+2025-05-01 21:02:53,849 - INFO - 
+Video 8:
+2025-05-01 21:02:54,300 - INFO - Saved video_7498827007917165866_image_17.png
+2025-05-01 21:02:59,026 - INFO - Downloaded video video_7498827007917165866.mp4
+2025-05-01 21:02:59,459 - INFO - Screenshot saved for revenue trend: revenue_trend_7498827007917165866.png
+2025-05-01 21:02:59,578 - INFO - Screenshot saved for views trend: views_trend_7498827007917165866.png
+2025-05-01 21:02:59,978 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1729387900735427500/cover.png
+2025-05-01 21:02:59,978 - INFO - Extracted Product ID: 1729387900735427500
+2025-05-01 21:03:00,108 - INFO - Saved product_1729387900735427500.png with product ID 1729387900735427500
+2025-05-01 21:03:00,314 - INFO - 
+Video 1:
+2025-05-01 21:03:00,316 - INFO - 
+Video 2:
+2025-05-01 21:03:00,319 - INFO - 
+Video 3:
+2025-05-01 21:03:00,322 - INFO - 
+Video 4:
+2025-05-01 21:03:00,324 - INFO - 
+Video 5:
+2025-05-01 21:03:00,326 - INFO - 
+Video 6:
+2025-05-01 21:03:00,327 - INFO - 
+Video 7:
+2025-05-01 21:03:00,329 - INFO - 
+Video 8:
+2025-05-01 21:03:00,331 - INFO - 
+Video 9:
+2025-05-01 21:03:00,759 - INFO - Saved video_7494756344076029226_image_19.png
+2025-05-01 21:03:02,239 - INFO - Downloaded video video_7494756344076029226.mp4
+2025-05-01 21:03:02,667 - INFO - Screenshot saved for revenue trend: revenue_trend_7494756344076029226.png
+2025-05-01 21:03:02,779 - INFO - Screenshot saved for views trend: views_trend_7494756344076029226.png
+2025-05-01 21:03:03,116 - INFO - Extracted URL: https://d3uucz7wx6jq40.cloudfront.net/tiktok.product/1729464033034539782/cover.png
+2025-05-01 21:03:03,116 - INFO - Extracted Product ID: 1729464033034539782
+2025-05-01 21:03:03,251 - INFO - Saved product_1729464033034539782.png with product ID 1729464033034539782
+2025-05-01 21:03:03,441 - INFO - 
+Video 1:
+2025-05-01 21:03:03,443 - INFO - 
+Video 2:
+2025-05-01 21:03:03,444 - INFO - 
+Video 3:
+2025-05-01 21:03:03,446 - INFO - 
+Video 4:
+2025-05-01 21:03:03,449 - INFO - 
+Video 5:
+2025-05-01 21:03:03,451 - INFO - 
+Video 6:
+2025-05-01 21:03:03,453 - INFO - 
+Video 7:
+2025-05-01 21:03:03,460 - INFO - 
+Video 8:
+2025-05-01 21:03:03,462 - INFO - 
+Video 9:
+2025-05-01 21:03:03,464 - INFO - 
+Video 10:
+2025-05-01 21:03:03,476 - INFO - Scraping complete!
+2025-05-01 21:03:03,476 - INFO - Total products scraped: 10
+2025-05-01 21:03:03,476 - INFO - Scraping complete!
+2025-05-01 21:03:03,476 - INFO - Total products scraped: 10

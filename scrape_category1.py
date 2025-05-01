@@ -18,8 +18,8 @@ logger.info("This will go ONLY to Top_Categories.log")
 
 log_file_path = "Top_Categories/Top_Categories.log"
 
-logger = logger.getLogger()
-logger.setLevel(logger.INFO)
+# logger = logger.getLogger()
+# logger.setLevel(logger.INFO)
 
 # Avoid adding multiple handlers if script is run multiple times
 if not logger.handlers:

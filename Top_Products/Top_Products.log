@@ -1,0 +1,116 @@
+2025-05-01 17:25:17,063 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 17:25:25,111 - INFO - Starting scraper...
+2025-05-01 17:25:55,135 - INFO - Scraping page 1...
+2025-05-01 17:25:55,163 - INFO - Loaded 10 products
+2025-05-01 17:25:55,270 - INFO - Downloaded logo for product 1 as product_logo_1730599741261713862.png
+2025-05-01 17:25:55,744 - INFO - Captured revenue trend screenshot revenue_trend_1730599741261713862.png
+2025-05-01 17:25:55,818 - INFO - Downloaded logo for product 2 as product_logo_1730890193353609874.png
+2025-05-01 17:25:55,904 - INFO - Saved video_7496616707151285550_image_1.png with product ID 7496616707151285550
+2025-05-01 17:25:55,943 - INFO - Downloaded image video_7496616707151285550_image_1.png
+2025-05-01 17:26:01,663 - INFO - Downloaded video video_7496616707151285550.mp4
+2025-05-01 17:26:01,982 - INFO - Saved video_7492106570566782250_image_2.png with product ID 7492106570566782250
+2025-05-01 17:26:01,983 - INFO - Downloaded image video_7492106570566782250_image_2.png
+2025-05-01 17:26:03,993 - INFO - Downloaded video video_7492106570566782250.mp4
+2025-05-01 17:26:04,305 - INFO - Saved video_7497051691104226603_image_3.png with product ID 7497051691104226603
+2025-05-01 17:26:04,305 - INFO - Downloaded image video_7497051691104226603_image_3.png
+2025-05-01 17:26:06,823 - INFO - Downloaded video video_7497051691104226603.mp4
+2025-05-01 17:26:07,535 - INFO - Captured revenue trend screenshot revenue_trend_1730890193353609874.png
+2025-05-01 17:26:07,620 - INFO - Downloaded logo for product 3 as product_logo_1729497551838548393.png
+2025-05-01 17:26:07,715 - INFO - Saved video_7497399682969308462_image_4.png with product ID 7497399682969308462
+2025-05-01 17:26:07,716 - INFO - Downloaded image video_7497399682969308462_image_4.png
+2025-05-01 17:26:16,170 - INFO - Downloaded video video_7497399682969308462.mp4
+2025-05-01 17:26:16,479 - INFO - Saved video_7497395743515446574_image_5.png with product ID 7497395743515446574
+2025-05-01 17:26:16,480 - INFO - Downloaded image video_7497395743515446574_image_5.png
+2025-05-01 17:26:18,090 - INFO - Downloaded video video_7497395743515446574.mp4
+2025-05-01 17:26:18,449 - INFO - Saved video_7489693215323524398_image_6.png with product ID 7489693215323524398
+2025-05-01 17:26:18,449 - INFO - Downloaded image video_7489693215323524398_image_6.png
+2025-05-01 17:26:20,567 - INFO - Downloaded video video_7489693215323524398.mp4
+2025-05-01 17:26:21,242 - INFO - Captured revenue trend screenshot revenue_trend_1729497551838548393.png
+2025-05-01 17:26:21,325 - INFO - Downloaded logo for product 4 as product_logo_1729606769780232427.png
+2025-05-01 17:26:21,414 - INFO - Saved video_7468548950665104686_image_7.png with product ID 7468548950665104686
+2025-05-01 17:26:21,415 - INFO - Downloaded image video_7468548950665104686_image_7.png
+2025-05-01 17:26:22,053 - INFO - Downloaded video video_7468548950665104686.mp4
+2025-05-01 17:26:22,471 - INFO - Saved video_7489627124127517998_image_8.png with product ID 7489627124127517998
+2025-05-01 17:26:22,472 - INFO - Downloaded image video_7489627124127517998_image_8.png
+2025-05-01 17:26:25,808 - INFO - Downloaded video video_7489627124127517998.mp4
+2025-05-01 17:26:26,123 - INFO - Saved video_7470287936458640671_image_9.png with product ID 7470287936458640671
+2025-05-01 17:26:26,123 - INFO - Downloaded image video_7470287936458640671_image_9.png
+2025-05-01 17:26:26,663 - INFO - Downloaded video video_7470287936458640671.mp4
+2025-05-01 17:26:27,410 - INFO - Captured revenue trend screenshot revenue_trend_1729606769780232427.png
+2025-05-01 17:26:27,515 - INFO - Downloaded logo for product 5 as product_logo_1729464033034539782.png
+2025-05-01 17:26:27,592 - INFO - Saved video_7498463851189488926_image_10.png with product ID 7498463851189488926
+2025-05-01 17:26:27,592 - INFO - Downloaded image video_7498463851189488926_image_10.png
+2025-05-01 17:26:28,282 - INFO - Downloaded video video_7498463851189488926.mp4
+2025-05-01 17:26:28,685 - INFO - Saved video_7494756344076029226_image_11.png with product ID 7494756344076029226
+2025-05-01 17:26:28,687 - INFO - Downloaded image video_7494756344076029226_image_11.png
+2025-05-01 17:26:29,916 - INFO - Downloaded video video_7494756344076029226.mp4
+2025-05-01 17:26:30,204 - INFO - Saved video_7490043514718260526_image_12.png with product ID 7490043514718260526
+2025-05-01 17:26:30,205 - INFO - Downloaded image video_7490043514718260526_image_12.png
+2025-05-01 17:26:30,714 - INFO - Downloaded video video_7490043514718260526.mp4
+2025-05-01 17:26:31,382 - INFO - Captured revenue trend screenshot revenue_trend_1729464033034539782.png
+2025-05-01 17:26:31,458 - INFO - Downloaded logo for product 6 as product_logo_1729465781365085154.png
+2025-05-01 17:26:31,539 - INFO - Saved video_7495934815108287790_image_13.png with product ID 7495934815108287790
+2025-05-01 17:26:31,539 - INFO - Downloaded image video_7495934815108287790_image_13.png
+2025-05-01 17:26:32,955 - INFO - Downloaded video video_7495934815108287790.mp4
+2025-05-01 17:26:33,256 - INFO - Saved video_7497970050272628014_image_14.png with product ID 7497970050272628014
+2025-05-01 17:26:33,257 - INFO - Downloaded image video_7497970050272628014_image_14.png
+2025-05-01 17:26:34,349 - INFO - Downloaded video video_7497970050272628014.mp4
+2025-05-01 17:26:40,733 - INFO - Downloaded video video_7492999336025017643.mp4
+2025-05-01 17:26:41,457 - INFO - Captured revenue trend screenshot revenue_trend_1729465781365085154.png
+2025-05-01 17:26:41,546 - INFO - Downloaded logo for product 7 as product_logo_1729418496836080191.png
+2025-05-01 17:26:41,628 - INFO - Saved video_7362770509936741674_image_15.png with product ID 7362770509936741674
+2025-05-01 17:26:41,629 - INFO - Downloaded image video_7362770509936741674_image_15.png
+2025-05-01 17:26:42,124 - INFO - Downloaded video video_7362770509936741674.mp4
+2025-05-01 17:26:42,551 - INFO - Saved video_7498560442856410411_image_16.png with product ID 7498560442856410411
+2025-05-01 17:26:42,551 - INFO - Downloaded image video_7498560442856410411_image_16.png
+2025-05-01 17:26:43,233 - INFO - Downloaded video video_7498560442856410411.mp4
+2025-05-01 17:26:43,544 - INFO - Saved video_7491348874599157022_image_17.png with product ID 7491348874599157022
+2025-05-01 17:26:43,544 - INFO - Downloaded image video_7491348874599157022_image_17.png
+2025-05-01 17:26:44,924 - INFO - Downloaded video video_7491348874599157022.mp4
+2025-05-01 17:26:45,629 - INFO - Captured revenue trend screenshot revenue_trend_1729418496836080191.png
+2025-05-01 17:26:45,698 - INFO - Downloaded logo for product 8 as product_logo_1729403338518794392.png
+2025-05-01 17:26:45,777 - INFO - Saved video_7494357317928930590_image_18.png with product ID 7494357317928930590
+2025-05-01 17:26:45,777 - INFO - Downloaded image video_7494357317928930590_image_18.png
+2025-05-01 17:26:46,905 - INFO - Downloaded video video_7494357317928930590.mp4
+2025-05-01 17:26:47,215 - INFO - Saved video_7495826524843543839_image_19.png with product ID 7495826524843543839
+2025-05-01 17:26:47,215 - INFO - Downloaded image video_7495826524843543839_image_19.png
+2025-05-01 17:26:47,911 - INFO - Downloaded video video_7495826524843543839.mp4
+2025-05-01 17:26:48,231 - INFO - Saved video_7497449134039862559_image_20.png with product ID 7497449134039862559
+2025-05-01 17:26:48,232 - INFO - Downloaded image video_7497449134039862559_image_20.png
+2025-05-01 17:26:49,272 - INFO - Downloaded video video_7497449134039862559.mp4
+2025-05-01 17:26:49,977 - INFO - Captured revenue trend screenshot revenue_trend_1729403338518794392.png
+2025-05-01 17:26:50,070 - INFO - Downloaded logo for product 9 as product_logo_1729417158856250354.png
+2025-05-01 17:26:50,146 - INFO - Saved video_7398318005853179179_image_21.png with product ID 7398318005853179179
+2025-05-01 17:26:50,147 - INFO - Downloaded image video_7398318005853179179_image_21.png
+2025-05-01 17:26:51,308 - INFO - Downloaded video video_7398318005853179179.mp4
+2025-05-01 17:26:51,659 - INFO - Saved video_7464408406556855598_image_22.png with product ID 7464408406556855598
+2025-05-01 17:26:51,659 - INFO - Downloaded image video_7464408406556855598_image_22.png
+2025-05-01 17:26:52,044 - INFO - Downloaded video video_7464408406556855598.mp4
+2025-05-01 17:26:52,372 - INFO - Saved video_7483675904921570590_image_23.png with product ID 7483675904921570590
+2025-05-01 17:26:52,372 - INFO - Downloaded image video_7483675904921570590_image_23.png
+2025-05-01 17:26:52,862 - INFO - Downloaded video video_7483675904921570590.mp4
+2025-05-01 17:26:53,587 - INFO - Captured revenue trend screenshot revenue_trend_1729417158856250354.png
+2025-05-01 17:26:53,670 - INFO - Downloaded logo for product 10 as product_logo_1730145765796646939.png
+2025-05-01 17:26:53,776 - INFO - Saved video_7498151327529258286_image_24.png with product ID 7498151327529258286
+2025-05-01 17:26:53,777 - INFO - Downloaded image video_7498151327529258286_image_24.png
+2025-05-01 17:26:54,759 - INFO - Downloaded video video_7498151327529258286.mp4
+2025-05-01 17:26:55,226 - INFO - Saved video_7497975623747685678_image_25.png with product ID 7497975623747685678
+2025-05-01 17:26:55,227 - INFO - Downloaded image video_7497975623747685678_image_25.png
+2025-05-01 17:26:58,075 - INFO - Downloaded video video_7497975623747685678.mp4
+2025-05-01 17:26:58,408 - INFO - Saved video_7493356617774353710_image_26.png with product ID 7493356617774353710
+2025-05-01 17:26:58,408 - INFO - Downloaded image video_7493356617774353710_image_26.png
+2025-05-01 17:27:00,533 - INFO - Downloaded video video_7493356617774353710.mp4
+2025-05-01 17:27:01,290 - INFO - Captured revenue trend screenshot revenue_trend_1730145765796646939.png
+2025-05-01 17:27:01,317 - INFO - Scraping complete!
+2025-05-01 17:27:01,321 - INFO - Total products scraped: 10
+2025-05-01 17:27:01,321 - INFO - Scraping complete!
+2025-05-01 17:27:01,322 - INFO - Total products scraped: 10
+2025-05-01 17:29:22,040 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 17:30:48,382 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 18:20:01,710 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 18:50:26,681 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 18:56:04,705 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 18:58:07,778 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 20:50:36,179 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 20:51:49,146 - INFO - This will go ONLY to Top_Products.log
+2025-05-01 21:02:01,021 - INFO - This will go ONLY to Top_Products.log

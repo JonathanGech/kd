@@ -4,20 +4,8 @@ import json
 import os
 import re
 import requests
-import logging
 import random
 from p_logging import get_logger
-
-# Product_dir = "Top_Products"
-# if not os.path.exists(Product_dir):
-#     os.makedirs(Product_dir)
-
-# log_file_path = "Top_Products/Top_Products.log"
-
-# logger.basicConfig(level=logger.INFO, format="%(asctime)s - %(levelname)s - %(message)s", handlers=[
-#     logger.FileHandler(log_file_path),
-#     logger.StreamHandler()
-# ])
 
 Product_dir = "Top_Products"
 if not os.path.exists(Product_dir):
@@ -49,7 +37,7 @@ async def extract_product_data(page, page_num):
     global image_counter, logo_counter, trend_counter, rank_counter
 
     # Base index starts at 1 for page 1, 51 for page 2, 101 for page 3, etc.
-    base_index = 1 + (page_num - 1) * 50
+    base_index = 1 + (page_num - 1) * 10
     image_counter = logo_counter = trend_counter = rank_counter = base_index
 
     # Continue with the rest of your scraping logic...
@@ -102,9 +90,9 @@ async def extract_product_data(page, page_num):
             # await asyncio.sleep(0.2)
             
 
-            max_retries = 1
-            retry_count = 0
-            video_downloaded = False
+            # max_retries = 1
+            # retry_count = 0
+            # video_downloaded = False
             # while retry_count < max_retries and not video_downloaded:
             #     try:
             #         async with page.expect_download() as download_info:
@@ -135,7 +123,6 @@ async def extract_product_data(page, page_num):
             #         await asyncio.sleep(1)
             # if not video_downloaded:
             #     logger.warning(f"Video failed to download after {max_retries} retries for image {image_name}. Proceeding to image download.")
-
             style = await image_div.get_attribute("style")
             match = re.search(r'url\(["\']?(.*?)["\']?\)', style)
             image_name = "N/A"
@@ -143,6 +130,7 @@ async def extract_product_data(page, page_num):
                 url = match.group(1)
                 id_match = re.search(r'tiktok\.video/(\d+)/', url)
                 product_id = id_match.group(1) if id_match else None
+                best_seller_ids.append(product_id) # ✅ Save product ID
                 try:
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
@@ -150,32 +138,50 @@ async def extract_product_data(page, page_num):
                         image_path = os.path.join(output_dir, image_name)
                         with open(image_path, "wb") as f:
                             f.write(response.content)
-                        best_seller_ids.append(product_id)  # ✅ Save product ID
+                        # best_seller_ids.append(product_id)  # ✅ Save product ID
                         best_seller_images.append(image_name)
                         logger.info(f"Saved {image_name} with product ID {product_id}")       
                         image_counter += 1
                         logger.info(f"Downloaded image {image_name}")
                 except Exception as e:
                     logger.error(f"Failed to download image {image_name}: {e}")
+            
+            try:
+                await image_div.click()
+                await page.wait_for_selector("#videoplayer video", timeout=10000)  # Use ID selector
 
-            
-            # while retry_count < max_retries and not video_downloaded:
-            #     try:
-            #         async with page.expect_download() as download_info:
-            #             await page.click("text=Download Video (Without Watermark)")
-            #             await page.wait_for_selector("div.Layout-VideoDownloading", timeout=10000)
-            #         download = await download_info.value
-            #         video_filename = image_name.replace(".png", ".mp4")
-            #         video_path = os.path.join(highest_revenue_dir, video_filename)
-            #         await download.save_as(video_path)
-            #         highest_revenue_videos.append(video_filename)
-            #         video_downloaded = True
-            #         logger.info(f"Downloaded video {video_filename}")
-            #     except Exception as e:
-            #         retry_count += 1
-            #         logger.error(f"Failed to download video after {retry_count} retries: {e}")
-            #         await asyncio.sleep(2)
-            
+                video_element = await page.query_selector("#videoplayer video")
+                video_url = await video_element.get_attribute("src") if video_element else None
+
+                if video_url:
+                    video_filename = f"video_{product_id}.mp4"
+                    video_path = os.path.join(highest_revenue_dir, video_filename)
+
+                    response = requests.get(video_url, headers=headers)
+                    if response.status_code == 200:
+                        with open(video_path, "wb") as f:
+                            f.write(response.content)
+                        highest_revenue_videos.append(video_filename)
+                        logger.info(f"Downloaded video {video_filename}")
+                    else:
+                        logger.warning(f"Video URL responded with status {response.status_code}")
+                else:
+                    logger.warning("No video URL found in #videoplayer")
+            except Exception as e:
+                logger.error(f"Error during video extraction from image_div: {e}")
+            finally:
+                try:
+                    close_button = await page.query_selector(
+                        "//div[contains(@class, 'w-[40px]') and contains(@class, 'h-[40px]') "
+                        "and contains(@class, 'rounded-full') and contains(@class, 'bg-[#999]')]"
+                    )
+                    if close_button:
+                        await close_button.click()
+                        await asyncio.sleep(0.2)
+                    else:
+                        logger.warning("Close button not found after video download or failure")
+                except Exception as e:
+                    logger.error(f"Error trying to close the video modal: {e}")
 
         await product_name_el.hover()
         await asyncio.sleep(0.2)
@@ -237,7 +243,7 @@ async def run_product_scraper(page, page_num):
             options = await page.query_selector_all("div.ant-select-item-option-content")
             for option in options:
                 text = await option.inner_text()
-                if "50 / page" in text:
+                if "10 / page" in text:
                     await option.click()
                     break
             
@@ -306,5 +312,5 @@ async def run_product_scraper(page, page_num):
     # Your download limit has been reached. Please go to the pricing page to purchase the recharge plan.
 
 async def product_main(page):
-    for page_num in range(1,11):
+    for page_num in range(1,2):
         await run_product_scraper(page, page_num)  # You can loop this later if needed

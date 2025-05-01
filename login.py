@@ -73,12 +73,12 @@ async def run():
 
         # Scrape Product Data
         print("Navigating to product data...")
-        await product_main(page)
+        # await product_main(page)
         
         # Scrape Video Data
         print("Navigating to video data...")
         # await extract_video_data(page)
-        # await video_main(page)
+        await video_main(page)
 
         # Scrape Category Data
         print("Navigating to category data...")
