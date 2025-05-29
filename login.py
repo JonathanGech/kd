@@ -69,7 +69,7 @@ async def run():
 
         print("Navigating to creator data...")
         # await run_creator_scraper(page, page_num)
-        # await creator_main(page)
+        await creator_main(page)
 
         # Scrape Product Data
         print("Navigating to product data...")
@@ -78,7 +78,7 @@ async def run():
         # Scrape Video Data
         print("Navigating to video data...")
         # await extract_video_data(page)
-        await video_main(page)
+        # await video_main(page)
 
         # Scrape Category Data
         print("Navigating to category data...")
