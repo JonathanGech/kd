@@ -221,7 +221,7 @@ async def extract_live_data(page, page_num):
 async def run_live_scraper(page, page_num):
     logger.info("Starting scraper...")
     try:
-        if page_num == 1:
+        if page_num == 1 or page_num == 4 or page_num == 7:
             logger.info("Clicking 'Livestream' link inside #page_header_left...")
             await page.click("#page_header_left >> text=Livestream")
             
@@ -247,13 +247,41 @@ async def run_live_scraper(page, page_num):
             nonlocal all_results
             async with semaphore:
                 try:
+                    # if page_num > 1:
+                    #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                    #     try:
+                    #         await page.click(selector)
+                    #         await asyncio.sleep(3)
+                    #     except Exception as e:
+                    #         logger.error(f"Page {page_num} navigation failed: {e}")
+                    #         return
                     if page_num > 1:
                         selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
-                        try:
+                        if page_num == 4:
+                            selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("5")'
                             await page.click(selector)
                             await asyncio.sleep(3)
+                            selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                        elif page_num == 7:
+                            selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("5")'
+                            await page.click(selector)
+                            selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("7")'
+                            await page.click(selector)
+                            await asyncio.sleep(3)
+                            selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                        try:
+                            if selector:
+                                await page.click(selector)
+                                await asyncio.sleep(3)
+                            else:
+                                more = await page.query_selector("span.ant-pagination-item-ellipsis")
+                                await page.click(more)
+                                
                         except Exception as e:
                             logger.error(f"Page {page_num} navigation failed: {e}")
+                            await page.click("span.ant-pagination-item-ellipsis")
+                            await page.click(selector)
+                            await asyncio.sleep(3)
                             return
 
                     page_results = await extract_live_data(page, page_num)
@@ -293,6 +321,9 @@ async def run_live_scraper(page, page_num):
     logger.info("Scraping complete!")
     logger.info(f"Total lives scraped: {len(all_results)}")
 
-async def live_main(page):
-    for page_num in range(1,11):
+async def live_main(page, page_range):
+    # for page_num in range(1,11):
+    #     await run_live_scraper(page, page_num)  # You can loop this later if needed
+    for page_num in page_range:
         await run_live_scraper(page, page_num)  # You can loop this later if needed
+    await page.close()

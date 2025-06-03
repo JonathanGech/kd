@@ -235,6 +235,7 @@ async def extract_product_data(page, page_num):
 async def run_product_scraper(page, page_num):
     logger.info("Starting scraper...")
     try:
+        # if page_num == 1 or page_num == 4 or page_num == 7:
         if page_num == 1:
             await page.click("#page_header_left >> text=Product")
 
@@ -243,7 +244,7 @@ async def run_product_scraper(page, page_num):
             options = await page.query_selector_all("div.ant-select-item-option-content")
             for option in options:
                 text = await option.inner_text()
-                if "10 / page" in text:
+                if "50 / page" in text:
                     await option.click()
                     break
             
@@ -261,13 +262,41 @@ async def run_product_scraper(page, page_num):
             nonlocal all_results
             async with semaphore:
                 try:
+                    # if page_num > 1:
+                    #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                    #     try:
+                    #         await page.click(selector)
+                    #         await asyncio.sleep(3)
+                    #     except Exception as e:
+                    #         logger.error(f"Page {page_num} navigation failed: {e}")
+                    #         return
                     if page_num > 1:
                         selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                        # if page_num == 4:
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("5")'
+                        #     await page.click(selector)
+                        #     await asyncio.sleep(3)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                        # elif page_num == 7:
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("5")'
+                        #     await page.click(selector)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("7")'
+                        #     await page.click(selector)
+                        #     await asyncio.sleep(3)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
                         try:
-                            await page.click(selector)
-                            await asyncio.sleep(3)
+                            if selector:
+                                await page.click(selector)
+                                await asyncio.sleep(3)
+                            else:
+                                more = await page.query_selector("span.ant-pagination-item-ellipsis")
+                                await page.click(more)
+                                
                         except Exception as e:
                             logger.error(f"Page {page_num} navigation failed: {e}")
+                            await page.click("span.ant-pagination-item-ellipsis")
+                            await page.click(selector)
+                            await asyncio.sleep(3)
                             return
 
                     page_results = await extract_product_data(page, page_num)
@@ -314,3 +343,8 @@ async def run_product_scraper(page, page_num):
 async def product_main(page):
     for page_num in range(1,2):
         await run_product_scraper(page, page_num)  # You can loop this later if needed
+    # for page_num in page_range:
+    #     await run_product_scraper(page, page_num)  # You can loop this later if needed
+    await page.close()
+
+    # text-base-666 text-[14px] text-center

@@ -156,10 +156,16 @@ async def extract_video_data(page, page_num):
                 logger.error(f"Error during video extraction from image_div: {e}")
             finally:
                 try:
+                    # close_button = await page.query_selector(
+                    #     "//div[contains(@class, 'w-[40px]') and contains(@class, 'h-[40px]') "
+                    #     "and contains(@class, 'rounded-full') and contains(@class, 'bg-[#999]')]"
+                    # )
                     close_button = await page.query_selector(
-                        "//div[contains(@class, 'w-[40px]') and contains(@class, 'h-[40px]') "
-                        "and contains(@class, 'rounded-full') and contains(@class, 'bg-[#999]')]"
+                        "//div[contains(@class, 'w-[40px]') and contains(@class, 'h-[40px]') and contains(@class, 'rounded-full') "
+                        "and contains(@class, 'bg-[#999]') and contains(@class, 'cursor-pointer') and contains(@class, 'flex') "
+                        "and contains(@class, 'items-center') and contains(@class, 'justify-center')]"
                     )
+                    # w-[40px] h-[40px] rounded-full bg-[#999] cursor-pointer flex items-center justify-center
                     if close_button:
                         await close_button.click()
                         await asyncio.sleep(0.2)
@@ -335,7 +341,9 @@ async def extract_video_data(page, page_num):
 async def run_video_scraper(page, page_num):
     logger.info("Starting scraper...")
     try:
+        # if page_num == 1 or page_num == 4 or page_num == 7:
         if page_num == 1:
+        # if page_num == 1 or page_num == 3 or page_num == 5 or page_num == 7 or page_num == 9:
             logger.info("Clicking 'Video' link inside #page_header_left...")
             await page.click("#page_header_left >> text=Video & Ad")
 
@@ -344,7 +352,7 @@ async def run_video_scraper(page, page_num):
             options = await page.query_selector_all("div.ant-select-item-option-content")
             for option in options:
                 text = await option.inner_text()
-                if "10 / page" in text:
+                if "50 / page" in text:
                     await option.click()
                     break
             await page.click("div.h-\\[22px\\].hover\\:bg-\\[rgb\\(238\\,246\\,253\\)\\].rounded-\\[4px\\].pl-\\[4px\\].flex.items-center.justify-between.text-\\[13px\\].whitespace-nowrap")
@@ -361,13 +369,58 @@ async def run_video_scraper(page, page_num):
             nonlocal all_results
             async with semaphore:
                 try:
+                    # if page_num > 1:
+                    #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                    #     try:
+                    #         await page.click(selector)
+                    #         await asyncio.sleep(4)
+                    #     except Exception as e:
+                    #         logger.error(f"Page {page_num} navigation failed: {e}")
+                    #         return
                     if page_num > 1:
                         selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                        # if page_num == 4:
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("5")'
+                        #     await page.click(selector)
+                        #     await asyncio.sleep(3)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                        # elif page_num == 7:
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("5")'
+                        #     await page.click(selector)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("7")'
+                        #     await page.click(selector)
+                        #     await asyncio.sleep(3)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                        # if page_num == 7:
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("5")'
+                        #     await page.click(selector)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("7")'
+                        #     await page.click(selector)
+                        #     await asyncio.sleep(3)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
+                        # elif page_num == 9:
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("5")'
+                        #     await page.click(selector)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("7")'
+                        #     await page.click(selector)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("9")'
+                        #     await page.click(selector)
+                        #     await asyncio.sleep(3)
+                        #     selector = f'li.ant-pagination-item >> a[rel="nofollow"]:has-text("{page_num}")'
                         try:
-                            await page.click(selector)
-                            await asyncio.sleep(4)
+                            if selector:
+                                # await selector.scroll_into_view_if_needed()
+                                await page.click(selector)
+                                await asyncio.sleep(3)
+                            else:
+                                more = await page.query_selector("span.ant-pagination-item-ellipsis")
+                                await page.click(more)
+                                
                         except Exception as e:
                             logger.error(f"Page {page_num} navigation failed: {e}")
+                            await page.click("span.ant-pagination-item-ellipsis")
+                            await page.click(selector)
+                            await asyncio.sleep(3)
                             return
 
                     page_results = await extract_video_data(page, page_num)
@@ -404,5 +457,8 @@ async def run_video_scraper(page, page_num):
     logger.info(f"Total products scraped: {len(all_results)}")
 
 async def video_main(page):
-    for page_num in range(1,2):
+    for page_num in range(1,11):
         await run_video_scraper(page, page_num)  # You can loop this later if needed
+    # for page_num in page_range:
+    #     await run_video_scraper(page, page_num)  # You can loop this later if needed
+    await page.close()
